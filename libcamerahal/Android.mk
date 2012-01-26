@@ -12,7 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ifeq ($(TARGET_LEGACY_CAMERA),true)
 
 LOCAL_PATH:= $(call my-dir)
 
@@ -30,6 +29,4 @@ LOCAL_SHARED_LIBRARIES += libcamera
 LOCAL_PRELINK_MODULE := false
 
 include $(BUILD_SHARED_LIBRARY)
-
-endif # TARGET_DEVICE
 

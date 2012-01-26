@@ -27,35 +27,14 @@ PRODUCT_DEVICE := skate
 PRODUCT_MODEL := ZTE Skate
 
 PRODUCT_PACKAGES += \
-    Stk \
     Gallery2 \
-    SpareParts \
     SkateParts \
-    CMSettings \
-    FM \
-    abtfilt \
-    dexpreopt
-
-PRODUCT_PACKAGES += \
-    librs_jni \
-    Development \
-    Term \
-    libaudioutils \
-    libtinyalsa \
     libOmxVenc \
     libOmxVdec \
-    FileManager \
-    screencap \
     audio.a2dp.default \
-    dexpreopt \
-    abtfilt \
     hwcomposer.msm7x27 \
     gralloc.msm7x27 \
     copybit.msm7x27 \
-    zipalign \
-    Superuser
-
-PRODUCT_PACKAGES += \
     prox_cal \
     libstagefrighthw \
     libmm-omxcore \
@@ -64,13 +43,13 @@ PRODUCT_PACKAGES += \
     lights.skate \
     copybit.skate \
     gps.skate \
+    sensors.skate \
     libQcomUI \
     libmemalloc \
     libgenlock \
-    libtilerenderer \
-    sensors.skate
+    libtilerenderer
 
-PRODUCT_LOCALES := en
+PRODUCT_LOCALES := en_GB
 
 # Skate uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := hdpi
@@ -91,9 +70,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/zte/skate/prebuilt/etc/vold.fstab:system/etc/vold.fstab
 
-# EGL and temporary hack for surfaceflinger and gralloc
+# EGL and temporary hack for grallloc and surfaceflinger
 PRODUCT_COPY_FILES += \
     device/zte/skate/prebuilt/lib/hw/gralloc.msm7x27.so:system/lib/hw/gralloc.msm7x27.so \
+    device/zte/skate/prebuilt/lib/libgui.so:system/lib/libgui.so \
     device/zte/skate/prebuilt/lib/libsurfaceflinger.so:system/lib/libsurfaceflinger.so \
     device/zte/skate/prebuilt/lib/egl/libEGL_adreno200.so:system/lib/egl/libEGL_adreno200.so \
     device/zte/skate/prebuilt/lib/egl/libGLESv1_CM_adreno200.so:system/lib/egl/libGLESv1_CM_adreno200.so \
@@ -110,12 +90,10 @@ PRODUCT_COPY_FILES += \
 # Audio
 PRODUCT_COPY_FILES += \
     device/zte/skate/prebuilt/etc/AutoVolumeControl.txt:system/etc/AutoVolumeControl.txt \
-    device/zte/skate/prebuilt/lib/hw/audio.primary.skate.so:system/lib/hw/audio.primary.skate.so \
-    device/zte/skate/prebuilt/lib/hw/audio_policy.skate.so:system/lib/hw/audio_policy.skate.so
+    device/zte/skate/prebuilt/lib/hw/audio.primary.skate.so:system/lib/hw/audio.primary.skate.so
 
-# WLAN + BT + FM
+# WLAN + FM
 PRODUCT_COPY_FILES += \
-    device/zte/skate/prebuilt/etc/init.bt.sh:system/etc/init.bt.sh \
     device/zte/skate/prebuilt/etc/init.qcom.fm.sh:system/etc/init.qcom.fm.sh \
     device/zte/skate/prebuilt/etc/init.wlanprop.sh:system/etc/init.wlanprop.sh \
     device/zte/skate/prebuilt/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
@@ -146,6 +124,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.supplicant_scan_interval=60
 
+PRODUCT_PROPERTY_OVERIDES += \
+    ro.config.disable_hw_accel=true
+
 # Skate uses high-density artwork where available
 PRODUCT_LOCALES += hdpi
 
@@ -158,7 +139,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 PRODUCT_PROPERTY_OVERRIDES += \
     keyguard.no_require_sim=true \
-    ro.telephony.ril.v3=1 \
+    ro.telephony.ril.v3=icccardstatus,datacall,signalstrength,facilitylock \
     ro.com.android.dateformat=dd-MM-yyyy \
     ro.ril.hsxpa=1 \
     ro.ril.gprsclass=10 \

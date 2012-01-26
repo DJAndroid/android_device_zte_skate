@@ -13,5 +13,4 @@ include $(BUILD_PACKAGE)
 
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
-LOCAL_OVERRIDES_PACKAGES := PhaseBeam HoloSpiralWallpaper Galaxy4 MagicSmokeWallpapers NoiseField OpenWnn PinyinIME VideoEditor VisualizationWallpapers
 endif 

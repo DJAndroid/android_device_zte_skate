@@ -16,7 +16,7 @@ wifi.interface=wlan0
 ro.compcache.default=0
 persist.sys.use_16bpp_alpha=1
 media.stagefright.enable-player=true
-windowsmgr.max_events_per_sec=150
+windowsmgr.max_events_per_sec=500
 debug.performance.tuning=1
 video.accelerate.hw=1
 

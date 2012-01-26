@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2008 The Android Open Source Project
- * Copyright (c) 2010, Code Aurora Forum. All rights reserved.
+ * Copyright (c) 2011, Code Aurora Forum. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,16 +36,67 @@ using namespace overlay;
 #endif
 
 enum {
-    /* gralloc usage bit indicating a pmem_adsp allocation should be used */
-    GRALLOC_USAGE_PRIVATE_PMEM_ADSP = GRALLOC_USAGE_PRIVATE_0,
-    GRALLOC_USAGE_PRIVATE_PMEM = GRALLOC_USAGE_PRIVATE_1,
+    /* gralloc usage bits indicating the type
+     * of allocation that should be used */
+
+    /* ADSP heap is deprecated, use only if using pmem */
+    GRALLOC_USAGE_PRIVATE_ADSP_HEAP       =       GRALLOC_USAGE_PRIVATE_0,
+    /* SF heap is used for application buffers, is not secured */
+    GRALLOC_USAGE_PRIVATE_UI_CONTIG_HEAP  =       GRALLOC_USAGE_PRIVATE_1,
+    /* SMI heap is deprecated, use only if using pmem */
+    GRALLOC_USAGE_PRIVATE_SMI_HEAP        =       GRALLOC_USAGE_PRIVATE_2,
+    /* SYSTEM heap comes from kernel vmalloc,
+     * can never be uncached, is not secured*/
+    GRALLOC_USAGE_PRIVATE_SYSTEM_HEAP     =       GRALLOC_USAGE_PRIVATE_3,
+    /* IOMMU heap comes from manually allocated pages,
+     * can be cached/uncached, is not secured */
+    GRALLOC_USAGE_PRIVATE_IOMMU_HEAP      =       0x01000000,
+    /* MM heap is a carveout heap for video, can be secured*/
+    GRALLOC_USAGE_PRIVATE_MM_HEAP         =       0x02000000,
+    /* WRITEBACK heap is a carveout heap for writeback, can be secured*/
+    GRALLOC_USAGE_PRIVATE_WRITEBACK_HEAP  =       0x04000000,
+    /* CAMERA heap is a carveout heap for camera, is not secured*/
+    GRALLOC_USAGE_PRIVATE_CAMERA_HEAP     =       0x08000000,
+
+    /* Set this for allocating uncached memory (using O_DSYNC)
+     * cannot be used with noncontiguous heaps */
+    GRALLOC_USAGE_PRIVATE_UNCACHED        =       0x00010000,
+
+    /* This flag needs to be set when using a non-contiguous heap from ION.
+     * If not set, the system heap is assumed to be coming from ashmem
+     */
+    GRALLOC_USAGE_PRIVATE_ION             =       0x00020000,
 };
 
-#define NUM_BUFFERS 2
+/*enum {
+    GRALLOC_MODULE_PERFORM_CREATE_HANDLE_FROM_BUFFER = 0x080000001,
+};*/
+
+
+enum {
+    GPU_COMPOSITION,
+    C2D_COMPOSITION,
+    MDP_COMPOSITION,
+    CPU_COMPOSITION,
+};
+
+/* numbers of max buffers for page flipping */
+#define NUM_FRAMEBUFFERS_MIN 2
+#define NUM_FRAMEBUFFERS_MAX 3
+
+/* number of default bufers for page flipping */
+#define NUM_DEF_FRAME_BUFFERS 2
 #define NO_SURFACEFLINGER_SWAPINTERVAL
 #define INTERLACE_MASK 0x80
+#define S3D_FORMAT_MASK 0xFF000
+#define COLOR_FORMAT(x) (x & 0xFFF) // Max range for colorFormats is 0 - FFF
+#define DEVICE_PMEM "/dev/pmem"
+#define DEVICE_PMEM_ADSP "/dev/pmem_adsp"
+#define DEVICE_PMEM_SMIPOOL "/dev/pmem_smipool"
 /*****************************************************************************/
 #ifdef __cplusplus
+
+//XXX: Remove framebuffer specific classes and defines to a different header
 template <class T>
 struct Node
 {
@@ -125,14 +176,7 @@ private:
 
 enum {
     /* OEM specific HAL formats */
-    //HAL_PIXEL_FORMAT_YCbCr_422_SP = 0x100, // defined in hardware.h
-    //HAL_PIXEL_FORMAT_YCrCb_420_SP = 0x101, // defined in hardware.h
-    HAL_PIXEL_FORMAT_YCbCr_422_P  = 0x102,
-    HAL_PIXEL_FORMAT_YCbCr_420_P  = 0x103,
-    //HAL_PIXEL_FORMAT_YCbCr_422_I  = 0x104, // defined in hardware.h
-    HAL_PIXEL_FORMAT_YCbCr_420_I  = 0x105,
-    HAL_PIXEL_FORMAT_CbYCrY_422_I = 0x106,
-    HAL_PIXEL_FORMAT_CbYCrY_420_I = 0x107,
+    HAL_PIXEL_FORMAT_NV12_ENCODEABLE  = 0x102,
     HAL_PIXEL_FORMAT_YCbCr_420_SP_TILED     = 0x108,
     HAL_PIXEL_FORMAT_YCbCr_420_SP           = 0x109,
     HAL_PIXEL_FORMAT_YCrCb_420_SP_ADRENO    = 0x10A,
@@ -145,15 +189,21 @@ enum {
 
 /* possible formats for 3D content*/
 enum {
-    HAL_NO_3D = 0x00,
-    HAL_3D_IN_LR_SIDE  = 0x10000,
-    HAL_3D_IN_LR_TOP   = 0x20000,
-    HAL_3D_IN_LR_INTERLEAVE = 0x40000,
-    HAL_3D_OUT_LR_SIDE  = 0x1000,
-    HAL_3D_OUT_LR_TOP   = 0x2000,
-    HAL_3D_OUT_LR_INTERLEAVE = 0x4000
+    HAL_NO_3D                         = 0x0000,
+    HAL_3D_IN_SIDE_BY_SIDE_L_R        = 0x10000,
+    HAL_3D_IN_TOP_BOTTOM              = 0x20000,
+    HAL_3D_IN_INTERLEAVE              = 0x40000,
+    HAL_3D_IN_SIDE_BY_SIDE_R_L        = 0x80000,
+    HAL_3D_OUT_SIDE_BY_SIDE           = 0x1000,
+    HAL_3D_OUT_TOP_BOTTOM             = 0x2000,
+    HAL_3D_OUT_INTERLEAVE             = 0x4000,
+    HAL_3D_OUT_MONOSCOPIC             = 0x8000
 };
 
+enum {
+	BUFFER_TYPE_UI = 0,
+	BUFFER_TYPE_VIDEO
+};
 /*****************************************************************************/
 
 struct private_module_t;
@@ -165,11 +215,18 @@ struct qbuf_t {
     int  idx;
 };
 
+enum buf_state {
+    SUB,
+    REF,
+    AVL
+};
+
 struct avail_t {
     pthread_mutex_t lock;
     pthread_cond_t cond;
 #ifdef __cplusplus
     bool is_avail;
+    buf_state state;
 #endif
 };
 
@@ -191,10 +248,10 @@ struct private_module_t {
     float fps;
     int swapInterval;
 #ifdef __cplusplus
-    Queue<struct qbuf_t> disp; // non-empty when buffer is ready for display    
+    Queue<struct qbuf_t> disp; // non-empty when buffer is ready for display
 #endif
     int currentIdx;
-    struct avail_t avail[NUM_BUFFERS];
+    struct avail_t avail[NUM_FRAMEBUFFERS_MAX];
     pthread_mutex_t qlock;
     pthread_cond_t qpost;
 
@@ -213,8 +270,14 @@ struct private_module_t {
     bool exitHDMIUILoop;
     float actionsafeWidthRatio;
     float actionsafeHeightRatio;
+    bool hdmiStateChanged;
     pthread_mutex_t overlayLock;
     pthread_cond_t overlayPost;
+#endif
+#ifdef COMPOSITION_BYPASS
+    pthread_mutex_t bufferPostLock;
+    pthread_cond_t bufferPostCond;
+    bool bufferPostDone;
 #endif
 };
 
@@ -226,45 +289,47 @@ struct private_handle_t : public native_handle {
 struct private_handle_t {
     native_handle_t nativeHandle;
 #endif
-    
     enum {
         PRIV_FLAGS_FRAMEBUFFER    = 0x00000001,
         PRIV_FLAGS_USES_PMEM      = 0x00000002,
         PRIV_FLAGS_USES_PMEM_ADSP = 0x00000004,
-        PRIV_FLAGS_NEEDS_FLUSH    = 0x00000008,
+        PRIV_FLAGS_USES_ION       = 0x00000008,
         PRIV_FLAGS_USES_ASHMEM    = 0x00000010,
-    };
-
-    enum {
-        LOCK_STATE_WRITE     =   1<<31,
-        LOCK_STATE_MAPPED    =   1<<30,
-        LOCK_STATE_READ_MASK =   0x3FFFFFFF
+        PRIV_FLAGS_NEEDS_FLUSH    = 0x00000020,
+        PRIV_FLAGS_DO_NOT_FLUSH   = 0x00000040,
+        PRIV_FLAGS_SW_LOCK        = 0x00000080,
+        PRIV_FLAGS_NONCONTIGUOUS_MEM = 0x00000100,
+        PRIV_FLAGS_HWC_LOCK       = 0x00000200, // Set by HWC when storing the handle
     };
 
     // file-descriptors
     int     fd;
+    int     genlockHandle; // genlock handle to be dup'd by the binder
     // ints
     int     magic;
     int     flags;
     int     size;
     int     offset;
-    int     gpu_fd; // stored as an int, b/c we don't want it marshalled
+    int     bufferType;
 
     // FIXME: the attributes below should be out-of-line
     int     base;
-    int     lockState;
-    int     writeOwner;
     int     gpuaddr; // The gpu address mapped into the mmu. If using ashmem, set to 0 They don't care
     int     pid;
+    int     format;
+    int     width;
+    int     height;
+    int     genlockPrivFd; // local fd of the genlock device.
 
 #ifdef __cplusplus
-    static const int sNumInts = 10;
-    static const int sNumFds = 1;
+    static const int sNumInts = 12;
+    static const int sNumFds = 2;
     static const int sMagic = 'gmsm';
 
-    private_handle_t(int fd, int size, int flags) :
-        fd(fd), magic(sMagic), flags(flags), size(size), offset(0), gpu_fd(-1),
-        base(0), lockState(0), writeOwner(0), gpuaddr(0), pid(getpid())
+    private_handle_t(int fd, int size, int flags, int bufferType, int format, int width, int height) :
+        fd(fd), genlockHandle(-1), magic(sMagic), flags(flags), size(size), offset(0),
+        bufferType(bufferType), base(0), gpuaddr(0), pid(getpid()), format(format),
+        width(width), height(height), genlockPrivFd(-1)
     {
         version = sizeof(native_handle);
         numInts = sNumInts;
@@ -282,7 +347,7 @@ struct private_handle_t {
         const private_handle_t* hnd = (const private_handle_t*)h;
         if (!h || h->version != sizeof(native_handle) ||
                 h->numInts != sNumInts || h->numFds != sNumFds ||
-                hnd->magic != sMagic) 
+                hnd->magic != sMagic)
         {
             LOGE("invalid gralloc handle (at %p)", h);
             return -EINVAL;

@@ -12,22 +12,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# config.mk
-#
-# Product-specific compile-time definitions.
-#
-
-# WARNING: This line must come *before* including the proprietary
-# variant, so that it gets overwritten by the parent (which goes
-# against the traditional rules of inheritance).
-USE_CAMERA_STUB := false
-
 # Arch related defines
 TARGET_BOARD_PLATFORM := msm7x27
 TARGET_ARCH_VARIANT := armv6-vfp
 TARGET_CPU_ABI := armeabi
 TARGET_CPU_ABI := armeabi-v6l
 TARGET_CPU_ABI2 := armeabi
+ARCH_ARM_HAVE_VFP := true
+
+TARGET_GLOBAL_CFLAGS += -mfpu=vfp -mfloat-abi=softfp -Os
+TARGET_GLOBAL_CPPFLAGS += -mfpu=vfp -mfloat-abi=softfp -Os
 
 # Board related defines
 TARGET_NO_BOOTLOADER := true
@@ -43,9 +37,9 @@ BOARD_KERNEL_CMDLINE := androidboot.hardware=skate console=null
 BOARD_KERNEL_BASE := 0x02600000
 
 # FM radio 
-# BOARD_HAVE_FM_RADIO := true
-# BOARD_GLOBAL_CFLAGS += -DHAVE_FM_RADIO
-# BOARD_FM_DEVICE := si4708
+BOARD_HAVE_FM_RADIO := true
+BOARD_GLOBAL_CFLAGS += -DHAVE_FM_RADIO
+BOARD_FM_DEVICE := si4708
 
 # RIL
 BOARD_PROVIDES_LIBRIL := true
@@ -73,10 +67,8 @@ WIFI_DRIVER_MODULE_ARG := "firmware_path=/system/etc/fw_4319.bin,nvram_path=/sys
 WIFI_DRIVER_MODULE_NAME := "dhd"
 
 # Browser
-WITH_JIT := false
-ENABLE_JSC_JIT := false
-JS_ENGINE := jsc
-HTTP := android
+JS_ENGINE := v8
+HTTP := chrome
 
 # Sensors
 BOARD_VENDOR_USE_AKMD := akm8962
@@ -86,8 +78,19 @@ BOARD_USE_LEGACY_TOUCHSCREEN := true
  
 # Graphics
 BOARD_EGL_CFG := device/zte/skate/prebuilt/lib/egl/egl.cfg
-COMMON_GLOBAL_CFLAGS += -DMISSING_EGL_EXTERNAL_IMAGE -DMISSING_EGL_PIXEL_FORMAT_YV12 -DMISSING_GRALLOC_BUFFERS -DQCOM_HARDWARE
+BOARD_NO_PAGE_FLIPPING := true
+COPYBIT_MSM7K := true 
+COMMON_GLOBAL_CFLAGS += -DTARGET_MSM7x27 -DNO_RGBX_8888
+COMMON_GLOBAL_CFLAGS += -DMISSING_EGL_EXTERNAL_IMAGE -DMISSING_GRALLOC_BUFFERS -DQCOM_HARDWARE
+COMMON_GLOBAL_CFLAGS += -DMISSING_EGL_PIXEL_FORMAT_YV12
+COMMON_GLOBAL_CFLAGS += -DBOARD_GL_OES_EGL_IMG_EXTERNAL_HACK
+COMMON_GLOBAL_CFLAGS += -D_INTERNAL_BINDER_PARCEL_ -DUSE_LGE_ALS_DUMMY
 BOARD_AVOID_DRAW_TEXTURE_EXTENSION := true
+TARGET_LIBAGL_USE_GRALLOC_COPYBITS := true
+TARGET_DO_NOT_SETS_CAN_DRAW := true
+TARGET_SF_NEEDS_REAL_DIMENSIONS := true
+BOARD_USE_NASTY_PTHREAD_CREATE_HACK := true
+USE_OPENGL_RENDERER := false
 TARGET_USES_16BPPSURFACE_FOR_OPAQUE := true
 BOARD_OVERLAY_FORMAT_YCbCr_420_SP := true
 BOARD_OVERLAY_MINIFICATION_LIMIT := 2
@@ -97,9 +100,10 @@ TARGET_SPECIFIC_HEADER_PATH := device/zte/skate/include
 BOARD_EGL_GRALLOC_USAGE_FILTER := true
 
 # GPS
-#BOARD_USES_QCOM_HARDWARE := true
+BOARD_USES_QCOM_HARDWARE := true
 BOARD_USES_QCOM_LIBS := true
 BOARD_USES_QCOM_GPS := true
+BOARD_USES_LEGACY_QCOM := true
 BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 1240
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := skate
 
@@ -123,7 +127,6 @@ BOARD_CACHE_DEVICE := /dev/block/mtdblock4
 BOARD_CACHE_FILESYSTEM := auto
 BOARD_CACHE_FILESYSTEM_OPTIONS := rw
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/zte/skate/recovery/recovery_keys.c
-BOARD_CUSTOM_GRAPHICS := ../../../device/zte/skate/recovery/graphics.c
 TARGET_PREBUILT_KERNEL := device/zte/skate/prebuilt/kernel
 # TARGET_PREBUILT_RECOVERY_KERNEL := device/zte/skate/prebuilt/recovery_kernel
 
@@ -140,8 +143,8 @@ TARGET_PREBUILT_KERNEL := device/zte/skate/prebuilt/kernel
 # mtd8: 00180000 00020000 "persist"
 
 # Image file stuff
-BOARD_BOOTIMAGE_PARTITION_SIZE     := 0x00500000
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x00500000
+BOARD_BOOTIMAGE_PARTITION_SIZE     := 0x00600000
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x00400000
 BOARD_SYSTEMIMAGE_PARTITION_SIZE   := 0x0dc00000
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 0x0a280000
 BOARD_FLASH_BLOCK_SIZE := 131072
