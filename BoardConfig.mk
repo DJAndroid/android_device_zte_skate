@@ -69,12 +69,13 @@ WIFI_DRIVER_MODULE_NAME := "dhd"
 # Browser
 JS_ENGINE := v8
 HTTP := chrome
+WITH_JIT := true
 
 # Sensors
 BOARD_VENDOR_USE_AKMD := akm8962
 BOARD_USE_LEGACY_TOUCHSCREEN := true
 
-# pathmap_INCL := recovery:device/zte/skate/recovery
+pathmap_INCL := recovery:device/zte/skate/recovery
  
 # Graphics
 BOARD_EGL_CFG := device/zte/skate/prebuilt/lib/egl/egl.cfg
@@ -113,8 +114,8 @@ BOARD_USE_USB_MASS_STORAGE_SWITCH := true
 BOARD_HAS_SDCARD_INTERNAL := true
 BOARD_SDCARD_DEVICE_INTERNAL := /dev/block/vold/179:1
 BOARD_SDEXT_DEVICE := /dev/block/vold/179:2
-BOARD_UMS_LUNFILE := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"
-TARGET_USE_CUSTOM_LUN_FILE_PATH  := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"
+BOARD_UMS_LUNFILE := /sys/devices/platform/msm_hsusb/gadget/lun0/file
+TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"
 
 # Recovery
 BOARD_DATA_DEVICE := /dev/block/mtdblock6
@@ -127,6 +128,7 @@ BOARD_CACHE_DEVICE := /dev/block/mtdblock4
 BOARD_CACHE_FILESYSTEM := auto
 BOARD_CACHE_FILESYSTEM_OPTIONS := rw
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/zte/skate/recovery/recovery_keys.c
+BOARD_CUSTOM_GRAPHICS := ../../../device/zte/skate/recovery/graphics.c
 TARGET_PREBUILT_KERNEL := device/zte/skate/prebuilt/kernel
 # TARGET_PREBUILT_RECOVERY_KERNEL := device/zte/skate/prebuilt/recovery_kernel
 
@@ -143,8 +145,8 @@ TARGET_PREBUILT_KERNEL := device/zte/skate/prebuilt/kernel
 # mtd8: 00180000 00020000 "persist"
 
 # Image file stuff
-BOARD_BOOTIMAGE_PARTITION_SIZE     := 0x00600000
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x00400000
+BOARD_BOOTIMAGE_PARTITION_SIZE     := 0x00500000
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x00500000
 BOARD_SYSTEMIMAGE_PARTITION_SIZE   := 0x0dc00000
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 0x0a280000
 BOARD_FLASH_BLOCK_SIZE := 131072
