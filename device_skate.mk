@@ -70,11 +70,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/zte/skate/prebuilt/etc/vold.fstab:system/etc/vold.fstab
 
-# EGL and temporary hack for grallloc and surfaceflinger
+# EGL and temporary hack for grallloc
 PRODUCT_COPY_FILES += \
     device/zte/skate/prebuilt/lib/hw/gralloc.msm7x27.so:system/lib/hw/gralloc.msm7x27.so \
-    device/zte/skate/prebuilt/lib/libgui.so:system/lib/libgui.so \
-    device/zte/skate/prebuilt/lib/libsurfaceflinger.so:system/lib/libsurfaceflinger.so \
     device/zte/skate/prebuilt/lib/egl/libEGL_adreno200.so:system/lib/egl/libEGL_adreno200.so \
     device/zte/skate/prebuilt/lib/egl/libGLESv1_CM_adreno200.so:system/lib/egl/libGLESv1_CM_adreno200.so \
     device/zte/skate/prebuilt/lib/egl/libGLESv2_adreno200.so:system/lib/egl/libGLESv2_adreno200.so \
