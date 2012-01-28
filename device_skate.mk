@@ -29,17 +29,16 @@ PRODUCT_MODEL := ZTE Skate
 PRODUCT_PACKAGES += \
     Gallery2 \
     SkateParts \
-    libOmxVenc \
-    libOmxVdec \
     audio.a2dp.default \
     hwcomposer.msm7x27 \
     gralloc.msm7x27 \
     copybit.msm7x27 \
+    copybit.skate \
     prox_cal \
+    libopencorehw \
     libstagefrighthw \
     libmm-omxcore \
     libOmxCore \
-    libOmxVidEnc \
     lights.skate \
     copybit.skate \
     gps.skate \

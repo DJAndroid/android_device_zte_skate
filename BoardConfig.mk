@@ -75,7 +75,7 @@ WITH_JIT := true
 BOARD_VENDOR_USE_AKMD := akm8962
 BOARD_USE_LEGACY_TOUCHSCREEN := true
 
-pathmap_INCL := recovery:device/zte/skate/recovery
+# pathmap_INCL := recovery:device/zte/skate/recovery
  
 # Graphics
 BOARD_EGL_CFG := device/zte/skate/prebuilt/lib/egl/egl.cfg
