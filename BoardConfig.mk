@@ -45,10 +45,13 @@ BOARD_USES_GENERIC_AUDIO := false
 
 # Wifi
 BOARD_WPA_SUPPLICANT_DRIVER := WEXT
-WPA_SUPPLICANT_VERSION := VER_0_6_X
+WPA_SUPPLICANT_VERSION := VER_0_8_X
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_wext
+# I know we have the bcm4319 but this is a hack to get around incompatibility
+BOARD_WLAN_DEVICE := bcm4329
 WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/dhd.ko"
-WIFI_DRIVER_FW_AP_PATH := "/system/etc/fw_4319.bin"
-WIFI_DRIVER_FW_STA_PATH := "/system/etc/fw_4319_apsta.bin"
+WIFI_DRIVER_FW_PATH_STA := "/system/etc/fw_4319_apsta.bin"
+WIFI_DRIVER_FW_PATH_AP := "/system/etc/fw_4319.bin"
 WIFI_DRIVER_MODULE_ARG := "firmware_path=/system/etc/fw_4319.bin,nvram_path=/system/etc/nv_4319.txt iface_name=wlan"
 WIFI_DRIVER_MODULE_NAME := "dhd"
 
