@@ -18,7 +18,6 @@ TARGET_ARCH_VARIANT := armv6-vfp
 TARGET_CPU_ABI := armeabi
 TARGET_CPU_ABI := armeabi-v6l
 TARGET_CPU_ABI2 := armeabi
-ARCH_ARM_HAVE_VFP := true
 
 TARGET_GLOBAL_CFLAGS += -mfpu=vfp -mfloat-abi=softfp -Os
 TARGET_GLOBAL_CPPFLAGS += -mfpu=vfp -mfloat-abi=softfp -Os
@@ -33,13 +32,9 @@ BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
 
 # Kernel
+TARGET_PREBUILT_KERNEL := device/zte/skate/prebuilt/kernel
 BOARD_KERNEL_CMDLINE := androidboot.hardware=skate console=null
 BOARD_KERNEL_BASE := 0x02600000
-
-# FM radio 
-BOARD_HAVE_FM_RADIO := true
-BOARD_GLOBAL_CFLAGS += -DHAVE_FM_RADIO
-BOARD_FM_DEVICE := si4708
 
 # RIL
 BOARD_PROVIDES_LIBRIL := true
@@ -48,21 +43,12 @@ BOARD_PROVIDES_LIBRIL := true
 BOARD_PROVIDES_LIBAUDIO := true
 BOARD_USES_GENERIC_AUDIO := false
 
-# Camera
-BOARD_CAMERA_USE_GETBUFFERINFO := true
-BOARD_USE_CAF_LIBCAMERA := true
-
 # Wifi
 BOARD_WPA_SUPPLICANT_DRIVER := WEXT
-# I know we have the bcm4319 but this is a hack to get around incompatibility with the BCM4319
-BOARD_WLAN_DEVICE := bcm4329
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_wext
-WPA_SUPPLICANT_VERSION := VER_0_8_X
-BOARD_HOSTAPD_DRIVER := WEXT
-BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_wext
+WPA_SUPPLICANT_VERSION := VER_0_6_X
 WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/dhd.ko"
-WIFI_DRIVER_FW_PATH_STA := "/system/etc/fw_4319_apsta.bin"
-WIFI_DRIVER_FW_PATH_AP := "/system/etc/fw_4319.bin"
+WIFI_DRIVER_FW_AP_PATH := "/system/etc/fw_4319.bin"
+WIFI_DRIVER_FW_STA_PATH := "/system/etc/fw_4319_apsta.bin"
 WIFI_DRIVER_MODULE_ARG := "firmware_path=/system/etc/fw_4319.bin,nvram_path=/system/etc/nv_4319.txt iface_name=wlan"
 WIFI_DRIVER_MODULE_NAME := "dhd"
 
@@ -74,37 +60,19 @@ WITH_JIT := true
 # Sensors
 BOARD_VENDOR_USE_AKMD := akm8962
 BOARD_USE_LEGACY_TOUCHSCREEN := true
-
-# pathmap_INCL := recovery:device/zte/skate/recovery
  
 # Graphics
 BOARD_EGL_CFG := device/zte/skate/prebuilt/lib/egl/egl.cfg
-BOARD_NO_PAGE_FLIPPING := true
-COPYBIT_MSM7K := true 
-COMMON_GLOBAL_CFLAGS += -DTARGET_MSM7x27 -DREFRESH_RATE=59
-COMMON_GLOBAL_CFLAGS += -DMISSING_EGL_EXTERNAL_IMAGE -DMISSING_GRALLOC_BUFFERS -DQCOM_HARDWARE
-COMMON_GLOBAL_CFLAGS += -DMISSING_EGL_PIXEL_FORMAT_YV12
-COMMON_GLOBAL_CFLAGS += -DBOARD_GL_OES_EGL_IMG_EXTERNAL_HACK
-COMMON_GLOBAL_CFLAGS += -D_INTERNAL_BINDER_PARCEL_ -DUSE_LGE_ALS_DUMMY
-BOARD_AVOID_DRAW_TEXTURE_EXTENSION := true
-TARGET_LIBAGL_USE_GRALLOC_COPYBITS := true
-TARGET_DO_NOT_SETS_CAN_DRAW := true
-TARGET_SF_NEEDS_REAL_DIMENSIONS := true
-BOARD_USE_NASTY_PTHREAD_CREATE_HACK := true
+COMMON_GLOBAL_CFLAGS += -DTARGET_MSM7x27 -DREFRESH_RATE=59 -DQCOM_HARDWARE
 USE_OPENGL_RENDERER := false
-TARGET_USES_16BPPSURFACE_FOR_OPAQUE := true
-BOARD_OVERLAY_FORMAT_YCbCr_420_SP := true
-BOARD_OVERLAY_MINIFICATION_LIMIT := 2
-BOARD_USES_OVERLAY := true
 BOARD_HAS_FLIPPED_SCREEN := true
 TARGET_SPECIFIC_HEADER_PATH := device/zte/skate/include
-BOARD_EGL_GRALLOC_USAGE_FILTER := true
 
-# GPS
+# QCOM
 BOARD_USES_QCOM_HARDWARE := true
 BOARD_USES_QCOM_LIBS := true
-BOARD_USES_QCOM_GPS := true
 BOARD_USES_LEGACY_QCOM := true
+BOARD_USES_QCOM_GPS := true
 BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 1240
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := skate
 
@@ -118,19 +86,9 @@ BOARD_UMS_LUNFILE := /sys/devices/platform/msm_hsusb/gadget/lun0/file
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"
 
 # Recovery
-BOARD_DATA_DEVICE := /dev/block/mtdblock6
-BOARD_DATA_FILESYSTEM := auto
-BOARD_DATA_FILESYSTEM_OPTIONS := rw
-BOARD_SYSTEM_DEVICE := /dev/block/mtdblock5
-BOARD_SYSTEM_FILESYSTEM := auto
-BOARD_SYSTEM_FILESYSTEM_OPTIONS := rw
-BOARD_CACHE_DEVICE := /dev/block/mtdblock4
-BOARD_CACHE_FILESYSTEM := auto
-BOARD_CACHE_FILESYSTEM_OPTIONS := rw
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/zte/skate/recovery/recovery_keys.c
 BOARD_CUSTOM_GRAPHICS := ../../../device/zte/skate/recovery/graphics.c
-TARGET_PREBUILT_KERNEL := device/zte/skate/prebuilt/kernel
-# TARGET_PREBUILT_RECOVERY_KERNEL := device/zte/skate/prebuilt/recovery_kernel
+# pathmap_INCL := recovery:device/zte/skate/recovery
 
 # # cat /proc/mtd
 # dev:    size   erasesize  name

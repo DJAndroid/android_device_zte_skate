@@ -42,11 +42,7 @@ PRODUCT_PACKAGES += \
     lights.skate \
     copybit.skate \
     gps.skate \
-    sensors.skate \
-    libQcomUI \
-    libmemalloc \
-    libgenlock \
-    libtilerenderer
+    sensors.skate
 
 PRODUCT_LOCALES := en_GB
 
@@ -120,9 +116,6 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.supplicant_scan_interval=60
-
-PRODUCT_PROPERTY_OVERIDES += \
-    ro.config.disable_hw_accel=true
 
 # Skate uses high-density artwork where available
 PRODUCT_LOCALES += hdpi
