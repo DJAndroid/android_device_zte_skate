@@ -25,7 +25,10 @@
 
     <bool name="config_disableMenuKeyInLockScreen">true</bool>
 
+    <!-- If this is true, the screen will fade off. -->
     <bool name="config_animateScreenLights">false</bool>
+
+    <bool name="config_enableScreenOnAnimation">true</bool>
 
     <string name="config_legacyUmsLunFile">/sys/devices/platform/msm_hsusb/gadget/lun0/file</string>
 

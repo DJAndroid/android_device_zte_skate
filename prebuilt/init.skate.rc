@@ -66,8 +66,6 @@ on boot
     chown system system /sys/class/leds/amber/grpfreq
     chown system system /sys/class/leds/amber/grppwm
 
-    cp /system/etc/wifi/wpa_supplicant.conf /data/misc/wifi/wpa_supplicant.conf
-
 service hci_qcomm_init /system/bin/log -t qcom-bluetooth -p i "hci_qcomm_init service requested"
     class main
     user bluetooth

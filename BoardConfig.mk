@@ -18,7 +18,6 @@ TARGET_ARCH_VARIANT := armv6-vfp
 TARGET_CPU_ABI := armeabi
 TARGET_CPU_ABI := armeabi-v6l
 TARGET_CPU_ABI2 := armeabi
-
 TARGET_GLOBAL_CFLAGS += -mfpu=vfp -mfloat-abi=softfp -Os
 TARGET_GLOBAL_CPPFLAGS += -mfpu=vfp -mfloat-abi=softfp -Os
 
@@ -50,8 +49,8 @@ BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_wext
 # I know we have the bcm4319 but this is a hack to get around incompatibility
 BOARD_WLAN_DEVICE := bcm4329
 WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/dhd.ko"
-WIFI_DRIVER_FW_PATH_STA := "/system/etc/fw_4319_apsta.bin"
 WIFI_DRIVER_FW_PATH_AP := "/system/etc/fw_4319.bin"
+WIFI_DRIVER_FW_PATH_STA := "/system/etc/fw_4319_apsta.bin"
 WIFI_DRIVER_MODULE_ARG := "firmware_path=/system/etc/fw_4319.bin,nvram_path=/system/etc/nv_4319.txt iface_name=wlan"
 WIFI_DRIVER_MODULE_NAME := "dhd"
 
@@ -66,10 +65,12 @@ BOARD_USE_LEGACY_TOUCHSCREEN := true
  
 # Graphics
 BOARD_EGL_CFG := device/zte/skate/prebuilt/lib/egl/egl.cfg
+COMMON_GLOBAL_CFLAGS += -DMISSING_EGL_EXTERNAL_IMAGE -DMISSING_GRALLOC_BUFFERS -DMISSING_EGL_PIXEL_FORMAT_YV12
 COMMON_GLOBAL_CFLAGS += -DTARGET_MSM7x27 -DREFRESH_RATE=59 -DQCOM_HARDWARE
 USE_OPENGL_RENDERER := false
 BOARD_HAS_FLIPPED_SCREEN := true
 TARGET_SPECIFIC_HEADER_PATH := device/zte/skate/include
+TARGET_SUPPPORTS_DEFAULT_LIVE_WALLPAPERS := false
 
 # QCOM
 BOARD_USES_QCOM_HARDWARE := true

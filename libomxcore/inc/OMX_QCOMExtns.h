@@ -521,6 +521,31 @@ typedef struct OMX_QCOM_PANSCAN
    OMX_QCOMRectangle window[MAX_PAN_SCAN_WINDOWS];
 } OMX_QCOM_PANSCAN;
 
+typedef struct OMX_QCOM_FRAME_PACK_ARRANGEMENT
+{
+  OMX_U32 nSize;
+  OMX_VERSIONTYPE nVersion;
+  OMX_U32 nPortIndex;
+  OMX_U32 id;
+  OMX_U32 cancel_flag;
+  OMX_U32 type;
+  OMX_U32 quincunx_sampling_flag;
+  OMX_U32 content_interpretation_type;
+  OMX_U32 spatial_flipping_flag;
+  OMX_U32 frame0_flipped_flag;
+  OMX_U32 field_views_flag;
+  OMX_U32 current_frame_is_frame0_flag;
+  OMX_U32 frame0_self_contained_flag;
+  OMX_U32 frame1_self_contained_flag;
+  OMX_U32 frame0_grid_position_x;
+  OMX_U32 frame0_grid_position_y;
+  OMX_U32 frame1_grid_position_x;
+  OMX_U32 frame1_grid_position_y;
+  OMX_U32 reserved_byte;
+  OMX_U32 repetition_period;
+  OMX_U32 extension_flag;
+} OMX_QCOM_FRAME_PACK_ARRANGEMENT;
+
 typedef struct OMX_QCOM_EXTRADATA_FRAMEINFO
 {
    // common frame meta data. interlace related info removed

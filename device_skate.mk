@@ -12,85 +12,53 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#
-# This file is the build configuration for a full Android
-# build for sapphire hardware. This cleanly combines a set of
-# device-specific aspects (drivers) with a device-agnostic
-# product configuration (apps).
-#
-
-DEVICE_PACKAGE_OVERLAYS := device/zte/skate/overlay
+# proprietary side of the device
+$(call inherit-product-if-exists, vendor/zte/skate/skate-vendor.mk)
 
 # Discard inherited values and use our own instead.
 PRODUCT_NAME := zte_skate
 PRODUCT_DEVICE := skate
 PRODUCT_MODEL := ZTE Skate
 
+DEVICE_PACKAGE_OVERLAYS := device/zte/skate/overlay
+
+# We have enough storage space to hold precise GC data
+PRODUCT_TAGS += dalvik.gc.type-precise
+
+PRODUCT_LOCALES := en_GB
+# Skate uses high-density artwork where available
+PRODUCT_LOCALES += hdpi
+PRODUCT_AAPT_CONFIG := hdpi
+PRODUCT_AAPT_PREF_CONFIG := hdpi
+
+# Video Decoding
 PRODUCT_PACKAGES += \
-    Gallery2 \
-    SkateParts \
-    audio.a2dp.default \
-    hwcomposer.msm7x27 \
-    gralloc.msm7x27 \
-    copybit.msm7x27 \
-    copybit.skate \
-    prox_cal \
     libopencorehw \
     libstagefrighthw \
     libmm-omxcore \
     libOmxCore \
-    lights.skate \
-    copybit.skate \
-    gps.skate \
-    sensors.skate
 
-PRODUCT_LOCALES := en_GB
+# Graphics
+PRODUCT_PACKAGES += \
+    hwcomposer.msm7x27 \
+    copybit.skate
 
-# Skate uses high-density artwork where available
-PRODUCT_AAPT_CONFIG := hdpi
-PRODUCT_AAPT_PREF_CONFIG := hdpi
-
-# proprietary side of the device
-$(call inherit-product-if-exists, vendor/zte/skate/skate-vendor.mk)
-
-DISABLE_DEXPREOPT := false
-
-PRODUCT_COPY_FILES += \
-    device/zte/skate/prebuilt/usr/keylayout/skate_keypad.kl:system/usr/keylayout/skate_keypad.kl \
-    device/zte/skate/prebuilt/usr/keylayout/7k_handset.kl:system/usr/keylayout/7k_handset.kl \
-    device/zte/skate/prebuilt/usr/keylayout/Generic.kl:system/usr/keylayout/Generic.kl \
-    device/zte/skate/prebuilt/usr/idc/synaptics-rmi4-ts.idc:system/usr/idc/synaptics-rmi4-ts.idc
-
-# Vold
-PRODUCT_COPY_FILES += \
-    device/zte/skate/prebuilt/etc/vold.fstab:system/etc/vold.fstab
-
-# EGL and temporary hack for grallloc
-PRODUCT_COPY_FILES += \
-    device/zte/skate/prebuilt/lib/hw/gralloc.msm7x27.so:system/lib/hw/gralloc.msm7x27.so \
-    device/zte/skate/prebuilt/lib/egl/libEGL_adreno200.so:system/lib/egl/libEGL_adreno200.so \
-    device/zte/skate/prebuilt/lib/egl/libGLESv1_CM_adreno200.so:system/lib/egl/libGLESv1_CM_adreno200.so \
-    device/zte/skate/prebuilt/lib/egl/libGLESv2_adreno200.so:system/lib/egl/libGLESv2_adreno200.so \
-    device/zte/skate/prebuilt/lib/egl/libq3dtools_adreno200.so:system/lib/egl/libq3dtools_adreno200.so 
-
-# Init
-PRODUCT_COPY_FILES += \
-    device/zte/skate/prebuilt/init.skate.rc:root/init.skate.rc \
-    device/zte/skate/prebuilt/init.skate.usb.rc:root/init.skate.usb.rc \
-    device/zte/skate/prebuilt/ueventd.skate.rc:root/ueventd.skate.rc \
-    device/zte/skate/prebuilt/usbconfig:root/sbin/usbconfig
+# Apps
+PRODUCT_PACKAGES += \
+    Gallery2 \
+    SkateParts
 
 # Audio
-PRODUCT_COPY_FILES += \
-    device/zte/skate/prebuilt/etc/AutoVolumeControl.txt:system/etc/AutoVolumeControl.txt \
-    device/zte/skate/prebuilt/lib/hw/audio.primary.skate.so:system/lib/hw/audio.primary.skate.so
+PRODUCT_PACKAGES += \
+    audio.a2dp.default \
+    audio.primary.skate
 
-# WLAN + FM
-PRODUCT_COPY_FILES += \
-    device/zte/skate/prebuilt/etc/init.qcom.fm.sh:system/etc/init.qcom.fm.sh \
-    device/zte/skate/prebuilt/etc/init.wlanprop.sh:system/etc/init.wlanprop.sh \
-    device/zte/skate/prebuilt/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
-    device/zte/skate/prebuilt/etc/dhcpcd/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf
+# Other
+PRODUCT_PACKAGES += \
+    prox_cal \
+    lights.skate \
+    gps.skate \
+    sensors.skate
 
 # Install the features available on this device.
 PRODUCT_COPY_FILES += \
@@ -103,42 +71,51 @@ PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
     frameworks/base/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml
 
+# Init
+PRODUCT_COPY_FILES += \
+    device/zte/skate/prebuilt/init.skate.rc:root/init.skate.rc \
+    device/zte/skate/prebuilt/init.skate.usb.rc:root/init.skate.usb.rc \
+    device/zte/skate/prebuilt/ueventd.skate.rc:root/ueventd.skate.rc \
+    device/zte/skate/prebuilt/usbconfig:root/sbin/usbconfig
+
+# Keypad files
+PRODUCT_COPY_FILES += \
+    device/zte/skate/prebuilt/usr/keylayout/skate_keypad.kl:system/usr/keylayout/skate_keypad.kl \
+    device/zte/skate/prebuilt/usr/keylayout/7k_handset.kl:system/usr/keylayout/7k_handset.kl \
+    device/zte/skate/prebuilt/usr/keylayout/Generic.kl:system/usr/keylayout/Generic.kl \
+    device/zte/skate/prebuilt/usr/idc/synaptics-rmi4-ts.idc:system/usr/idc/synaptics-rmi4-ts.idc
+
+# RIL
+PRODUCT_COPY_FILES += \
+    device/zte/skate/prebuilt/lib/libril.so:system/lib/libril.so \
+    device/zte/skate/prebuilt/lib/libril.so:obj/lib/libril.so
+
+# Vold
+PRODUCT_COPY_FILES += \
+    device/zte/skate/prebuilt/etc/vold.fstab:system/etc/vold.fstab
+
+# EGL and gralloc module from SEMC
+PRODUCT_COPY_FILES += \
+    device/zte/skate/prebuilt/lib/hw/gralloc.skate.so:system/lib/hw/gralloc.skate.so \
+    device/zte/skate/prebuilt/lib/egl/libEGL_adreno200.so:system/lib/egl/libEGL_adreno200.so \
+    device/zte/skate/prebuilt/lib/egl/libGLESv1_CM_adreno200.so:system/lib/egl/libGLESv1_CM_adreno200.so \
+    device/zte/skate/prebuilt/lib/egl/libGLESv2_adreno200.so:system/lib/egl/libGLESv2_adreno200.so \
+    device/zte/skate/prebuilt/lib/egl/libq3dtools_adreno200.so:system/lib/egl/libq3dtools_adreno200.so 
+
+# Audio
+PRODUCT_COPY_FILES += \
+    device/zte/skate/prebuilt/etc/AutoVolumeControl.txt:system/etc/AutoVolumeControl.txt
+
 # Kernel Modules
 PRODUCT_COPY_FILES += \
     device/zte/skate/prebuilt/lib/modules/dhd.ko:system/lib/modules/dhd.ko \
     device/zte/skate/prebuilt/lib/modules/2.6.35.7-pref+/zram.ko:system/lib/modules/2.6.35.7-pref+/zram.ko 
 
-# WiFi firmware
+# WiFi
 PRODUCT_COPY_FILES += \
     device/zte/skate/prebuilt/etc/fw_4319.bin:system/etc/fw_4319.bin \
     device/zte/skate/prebuilt/etc/fw_4319_apsta.bin:system/etc/fw_4319_apsta.bin \
-    device/zte/skate/prebuilt/etc/nv_4319.txt:system/etc/nv_4319.txt
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    wifi.supplicant_scan_interval=60
-
-# Skate uses high-density artwork where available
-PRODUCT_LOCALES += hdpi
-
-# we have enough storage space to hold precise GC data
-PRODUCT_TAGS += dalvik.gc.type-precise
-
-# This should not be needed but on-screen keyboard uses the wrong density without it.
-PRODUCT_PROPERTY_OVERRIDES += \
-    qemu.sf.lcd_density=240
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    keyguard.no_require_sim=true \
-    ro.telephony.ril.v3=icccardstatus,datacall,signalstrength,facilitylock \
-    ro.com.android.dateformat=dd-MM-yyyy \
-    ro.ril.hsxpa=1 \
-    ro.ril.gprsclass=10 \
-    ro.telephony.default_network=0 \
-    ro.telephony.call_ring.multiple=false
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.com.google.locationfeatures=1 \
-    ro.setupwizard.enable_bypass=1 \
-    ro.media.dec.jpeg.memcap=20000000 \
-    ro.opengles.version=131072
+    device/zte/skate/prebuilt/etc/nv_4319.txt:system/etc/nv_4319.txt \
+    device/zte/skate/prebuilt/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
+    device/zte/skate/prebuilt/etc/dhcpcd/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf
 
