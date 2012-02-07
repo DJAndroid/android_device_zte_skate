@@ -51,6 +51,7 @@ PRODUCT_PACKAGES += \
 # Audio
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
+    audio_policy.skate \
     audio.primary.skate
 
 # Other
