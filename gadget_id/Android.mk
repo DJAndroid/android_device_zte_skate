@@ -1,4 +1,4 @@
-# Copyright (C) 2012 The Android Open Source Project
+# Copyright (C) 2010 Ricardo Cerqueira
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,20 +13,19 @@
 # limitations under the License.
 
 
+ifeq ($(TARGET_BOOTLOADER_BOARD_NAME),skate)
+
 LOCAL_PATH:= $(call my-dir)
-
 include $(CLEAR_VARS)
-
-LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/hw
-LOCAL_MODULE := camera.$(TARGET_BOARD_PLATFORM)
 
 LOCAL_MODULE_TAGS := optional
 
-LOCAL_SRC_FILES := cameraHal.cpp
-LOCAL_SHARED_LIBRARIES := liblog libutils libcutils
-LOCAL_SHARED_LIBRARIES += libui libhardware libcamera_client
-LOCAL_SHARED_LIBRARIES += libcamera
-LOCAL_PRELINK_MODULE := false
+LOCAL_SRC_FILES := gadget_id.c
 
-include $(BUILD_SHARED_LIBRARY)
+LOCAL_SHARED_LIBRARIES := libcutils
 
+LOCAL_MODULE := gadget_id
+
+include $(BUILD_EXECUTABLE)
+
+endif
