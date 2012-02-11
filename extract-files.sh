@@ -77,9 +77,6 @@ adb pull /system/lib/hw/gps.default.so ../../../vendor/zte/$DEVICE/proprietary/l
 adb pull /system/lib/libloc_api-rpc-qc.so ../../../vendor/zte/$DEVICE/proprietary/lib/libloc_api-rpc-qc.so
 adb pull /system/lib/libcommondefs.so ../../../vendor/zte/$DEVICE/proprietary/lib/libcommondefs.so
 
-# HW
-adb pull /system/lib/hw/sensors.default.so ../../../vendor/zte/$DEVICE/proprietary/lib/hw/sensors.default.so
-
 # Camera
 adb pull /system/lib/liboemcamera.so ../../../vendor/zte/$DEVICE/proprietary/lib/liboemcamera.so
 adb pull /system/lib/libcamera.so ../../../vendor/zte/$DEVICE/proprietary/lib/libcamera.so
@@ -117,7 +114,6 @@ adb pull /system/lib/libomx_sharedlibrary.so ../../../vendor/zte/$DEVICE/proprie
 
 # Misc
 adb pull /system/etc/init.qcom.bt.sh ../../../vendor/zte/$DEVICE/proprietary/etc/init.qcom.bt.sh
-adb pull /system/lib/libsensorservice.so ../../../vendor/zte/$DEVICE/proprietary/lib/libsensorservice.so
 
 (cat << EOF) | sed s/__DEVICE__/$DEVICE/g > ../../../vendor/zte/$DEVICE/$DEVICE-vendor-blobs.mk
 # Copyright (C) 2010 The Android Open Source Project
@@ -230,14 +226,10 @@ PRODUCT_COPY_FILES += \\
     vendor/zte/__DEVICE__/proprietary/lib/libloc_api-rpc-qc.so:system/lib/libloc_api-rpc-qc.so \\
     vendor/zte/__DEVICE__/proprietary/lib/libcommondefs.so:system/lib/libcommondefs.so
 
-# HW
-PRODUCT_COPY_FILES += \\
-    vendor/zte/__DEVICE__/proprietary/lib/hw/sensors.default.so:system/lib/hw/sensors.default.so
 
 # Misc
 PRODUCT_COPY_FILES += \\
-    vendor/zte/__DEVICE__/proprietary/etc/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \\
-    vendor/zte/__DEVICE__/proprietary/lib/libsensorservice.so:system/lib/libsensorservice.so
+    vendor/zte/__DEVICE__/proprietary/etc/init.qcom.bt.sh:system/etc/init.qcom.bt.sh
 
 EOF
 
