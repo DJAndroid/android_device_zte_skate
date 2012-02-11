@@ -108,6 +108,10 @@ enum {
 #define MDP_SOURCE_ROTATED_90		0x00100000
 /* drewis: end */
 
+#define MSMFB_OVERLAY_PLAY_WAIT _IOWR(MSMFB_IOCTL_MAGIC, 149, \
+						struct msmfb_overlay_data)
+#define MDP_MEMORY_ID_TYPE_FB		0x00001000
+
 struct mdp_rect {
 	uint32_t x;
 	uint32_t y;
