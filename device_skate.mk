@@ -47,6 +47,7 @@ PRODUCT_PACKAGES += \
     copybit.skate \
     gralloc.skate \
     lights.skate \
+    sensors.skate \
     libOmxVidEnc \
     FM \
     abtfilt \
