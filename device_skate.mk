@@ -120,3 +120,25 @@ PRODUCT_COPY_FILES += \
     device/zte/skate/prebuilt/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
     device/zte/skate/prebuilt/etc/dhcpcd/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf
 
+PRODUCT_PROPERTY_OVERRIDES += debug.sf.hw=1
+PRODUCT_PROPERTY_OVERRIDES += debug.composition.type=mdp
+PRODUCT_PROPERTY_OVERRIDES += debug.gr.numframebuffers=2
+
+# HardwareRenderer properties
+# dirty_regions: "false" to disable partial invalidates, override if enabletr=true
+PRODUCT_PROPERTY_OVERRIDES += \
+    hwui.render_dirty_regions=false \
+    hwui.disable_vsync=true \
+    hwui.print_config=choice \
+    debug.enabletr=false
+
+# Misc properties
+# events_per_sec: default 90
+PRODUCT_PROPERTY_OVERRIDES += \
+    pm.sleep_mode=true \
+    ro.telephony.call_ring.delay=2 \
+    net.tcp.buffersize.default=4096,87380,256960,4096,16384,256960 \
+    net.tcp.buffersize.wifi=4096,87380,256960,4096,16384,256960 \
+    net.tcp.buffersize.umts=4096,87380,256960,4096,16384,256960 \
+    net.tcp.buffersize.gprs=4096,87380,256960,4096,16384,256960 \
+    net.tcp.buffersize.edge=4096,87380,256960,4096,16384,256960
