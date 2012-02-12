@@ -100,7 +100,13 @@ PRODUCT_COPY_FILES += \
     device/zte/skate/prebuilt/lib/egl/libEGL_adreno200.so:system/lib/egl/libEGL_adreno200.so \
     device/zte/skate/prebuilt/lib/egl/libGLESv1_CM_adreno200.so:system/lib/egl/libGLESv1_CM_adreno200.so \
     device/zte/skate/prebuilt/lib/egl/libGLESv2_adreno200.so:system/lib/egl/libGLESv2_adreno200.so \
-    device/zte/skate/prebuilt/lib/egl/libq3dtools_adreno200.so:system/lib/egl/libq3dtools_adreno200.so 
+    device/zte/skate/prebuilt/lib/egl/libq3dtools_adreno200.so:system/lib/egl/libq3dtools_adreno200.so
+
+# GPS
+PRODUCT_COPY_FILES += \
+    device/zte/skate/prebuilt/lib/hw/gps.default.so:system/lib/hw/gps.default.so \
+    device/zte/skate/prebuilt/lib/libcommondefs.so:system/lib/libcommondefs.so \
+    device/zte/skate/prebuilt/lib/libloc_api-rpc-qc.so:system/lib/libloc_api-rpc-qc.so
 
 # Audio
 PRODUCT_COPY_FILES += \
