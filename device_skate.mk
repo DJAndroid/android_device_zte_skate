@@ -41,7 +41,6 @@ PRODUCT_PACKAGES += \
 # Graphics
 PRODUCT_PACKAGES += \
     hwcomposer.msm7x27 \
-    copybit.msm7x27 \
     gralloc.msm7x27
 
 # Apps
