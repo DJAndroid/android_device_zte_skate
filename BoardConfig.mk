@@ -79,7 +79,7 @@ BOARD_USES_QCOM_LIBS := true
 #BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := skate
 
 # USB 
-BOARD_CUSTOM_USB_CONTROLLER := ../../device/zte/skate/netd/UsbController.cpp
+# BOARD_CUSTOM_USB_CONTROLLER := ../../device/zte/skate/netd/UsbController.cpp
 BOARD_DATA_DEVICE := /dev/block/mtdblock6	
 BOARD_DATA_FILESYSTEM := auto  	
 BOARD_DATA_FILESYSTEM_OPTIONS := rw	
