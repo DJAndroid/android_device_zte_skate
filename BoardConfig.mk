@@ -18,8 +18,6 @@ TARGET_ARCH_VARIANT := armv6-vfp
 TARGET_CPU_ABI := armeabi
 TARGET_CPU_ABI := armeabi-v6l
 TARGET_CPU_ABI2 := armeabi
-TARGET_GLOBAL_CFLAGS += -mfpu=vfp -mfloat-abi=softfp -Os
-TARGET_GLOBAL_CPPFLAGS += -mfpu=vfp -mfloat-abi=softfp -Os
 
 # Board related defines
 TARGET_NO_BOOTLOADER := true
@@ -68,7 +66,7 @@ BOARD_EGL_CFG := device/zte/skate/prebuilt/lib/egl/egl.cfg
 USE_OPENGL_RENDERER := true
 TARGET_USES_GENLOCK := true
 COMMON_GLOBAL_CFLAGS += -DMISSING_EGL_EXTERNAL_IMAGE -DMISSING_GRALLOC_BUFFERS -DMISSING_EGL_PIXEL_FORMAT_YV12
-COMMON_GLOBAL_CFLAGS += -DTARGET_MSM7x27 -DREFRESH_RATE=60 -DQCOM_HARDWARE
+COMMON_GLOBAL_CFLAGS += -DREFRESH_RATE=60 -DQCOM_HARDWARE
 BOARD_HAS_FLIPPED_SCREEN := true
 TARGET_USE_OVERLAY := false
 TARGET_HAVE_BYPASS := false
@@ -85,6 +83,15 @@ BOARD_USES_QCOM_LIBS := true
 
 # USB 
 BOARD_CUSTOM_USB_CONTROLLER := ../../device/zte/skate/netd/UsbController.cpp
+BOARD_DATA_DEVICE := /dev/block/mtdblock6	
+BOARD_DATA_FILESYSTEM := auto  	
+BOARD_DATA_FILESYSTEM_OPTIONS := rw	
+BOARD_SYSTEM_DEVICE := /dev/block/mtdblock5
+BOARD_SYSTEM_FILESYSTEM := auto
+BOARD_SYSTEM_FILESYSTEM_OPTIONS := rw
+BOARD_CACHE_DEVICE := /dev/block/mtdblock4
+BOARD_CACHE_FILESYSTEM := auto
+BOARD_CACHE_FILESYSTEM_OPTIONS := rw
 BOARD_USE_USB_MASS_STORAGE_SWITCH := true
 BOARD_HAS_SDCARD_INTERNAL := true
 BOARD_SDCARD_DEVICE_INTERNAL := /dev/block/vold/179:1
@@ -95,7 +102,6 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/msm_hsusb/gadget/lun0/
 # Recovery
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/zte/skate/recovery/recovery_keys.c
 BOARD_CUSTOM_GRAPHICS := ../../../device/zte/skate/recovery/graphics.c
-# pathmap_INCL := recovery:device/zte/skate/recovery
 
 # # cat /proc/mtd
 # dev:    size   erasesize  name
