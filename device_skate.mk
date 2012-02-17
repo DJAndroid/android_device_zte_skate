@@ -20,6 +20,8 @@ PRODUCT_NAME := zte_skate
 PRODUCT_DEVICE := skate
 PRODUCT_MODEL := ZTE Skate
 
+$(call inherit-product-if-exists, vendor/zte/common/zte_common.mk)
+
 DEVICE_PACKAGE_OVERLAYS := device/zte/skate/overlay
 
 # We have enough storage space to hold precise GC data
@@ -40,8 +42,7 @@ PRODUCT_PACKAGES += \
 
 # Graphics
 PRODUCT_PACKAGES += \
-    hwcomposer.msm7x27 \
-    gralloc.msm7x27
+    hwcomposer.default
 
 # Apps
 PRODUCT_PACKAGES += \
@@ -122,9 +123,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/zte/skate/prebuilt/etc/fw_4319.bin:system/etc/fw_4319.bin \
     device/zte/skate/prebuilt/etc/fw_4319_apsta.bin:system/etc/fw_4319_apsta.bin \
-    device/zte/skate/prebuilt/etc/nv_4319.txt:system/etc/nv_4319.txt \
-    device/zte/skate/prebuilt/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
-    device/zte/skate/prebuilt/etc/dhcpcd/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf
+    device/zte/skate/prebuilt/etc/nv_4319.txt:system/etc/nv_4319.txt
 
 PRODUCT_PROPERTY_OVERRIDES += debug.sf.hw=1
 PRODUCT_PROPERTY_OVERRIDES += debug.composition.type=mdp
