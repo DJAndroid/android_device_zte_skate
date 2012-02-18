@@ -94,9 +94,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/zte/skate/prebuilt/etc/vold.fstab:system/etc/vold.fstab
 
-# EGL and gralloc module from SEMC
+# EGL and gralloc module
 PRODUCT_COPY_FILES += \
     device/zte/skate/prebuilt/lib/hw/gralloc.skate.so:system/lib/hw/gralloc.skate.so \
+    device/zte/skate/prebuilt/lib/hw/copybit.skate.so:system/lib/hw/copybit.skate.so \
     device/zte/skate/prebuilt/lib/egl/libEGL_adreno200.so:system/lib/egl/libEGL_adreno200.so \
     device/zte/skate/prebuilt/lib/egl/libGLESv1_CM_adreno200.so:system/lib/egl/libGLESv1_CM_adreno200.so \
     device/zte/skate/prebuilt/lib/egl/libGLESv2_adreno200.so:system/lib/egl/libGLESv2_adreno200.so \
@@ -136,6 +137,18 @@ PRODUCT_PROPERTY_OVERRIDES += \
     hwui.disable_vsync=true \
     hwui.print_config=choice \
     debug.enabletr=false
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.heapsize=48m \
+    dalvik.vm.dexopt-flags=v=n,o=v,m=y \
+    dalvik.vm.checkjni=false
+    dalvik.vm.checkjni=false \
+    dalvik.vm.heapstartsize=5m \
+    dalvik.vm.heapgrowthlimit=48m \
+    dalvik.vm.heapsize=128m
+
+# Don't set /proc/sys/vm/dirty_ratio to 0 when USB mounting
+PRODUCT_PROPERTY_OVERRIDES += ro.vold.umsdirtyratio=20
 
 # Misc properties
 # events_per_sec: default 90

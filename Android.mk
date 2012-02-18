@@ -13,6 +13,5 @@
 # limitations under the License.
 
 ifeq ($(TARGET_BOOTLOADER_BOARD_NAME),skate)
--include device/zte/common/AndroidCommon.mk
-include $(call all-named-subdir-makefiles, libsensors SkateParts)
+include $(call all-named-subdir-makefiles, libsensors SkateParts  liblights libomxcore libopencorehw libstagefrighthw)
 endif
