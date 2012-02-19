@@ -43,6 +43,14 @@ debug.sf.hw=1
 debug.composition.type=mdp
 debug.gr.numframebuffers=2
 
+debug.performance.tuning=1
+video.accelerate.hw=1
+debug.composition.type=hdpi
+hs.systemserver=16m
+hs.app.process=16m
+hs.su=8m
+hs.app_process=16m 
+
 # HardwareRenderer properties
 # dirty_regions: "false" to disable partial invalidates, override if enabletr=true
 hwui.render_dirty_regions=false
