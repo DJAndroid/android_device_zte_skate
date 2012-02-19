@@ -20,8 +20,6 @@ PRODUCT_NAME := zte_skate
 PRODUCT_DEVICE := skate
 PRODUCT_MODEL := ZTE Skate
 
-$(call inherit-product-if-exists, vendor/zte/common/zte_common.mk)
-
 DEVICE_PACKAGE_OVERLAYS := device/zte/skate/overlay
 
 # We have enough storage space to hold precise GC data
@@ -30,8 +28,6 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 PRODUCT_LOCALES := en_GB
 # Skate uses high-density artwork where available
 PRODUCT_LOCALES += hdpi
-PRODUCT_AAPT_CONFIG := hdpi
-PRODUCT_AAPT_PREF_CONFIG := hdpi
 
 # Video Decoding
 PRODUCT_PACKAGES += \
@@ -127,38 +123,3 @@ PRODUCT_COPY_FILES += \
     device/zte/skate/prebuilt/etc/dhcpcd/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf \
     device/zte/skate/prebuilt/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
     device/zte/skate/prebuilt/etc/nv_4319.txt:system/etc/nv_4319.txt
-
-PRODUCT_PROPERTY_OVERRIDES += debug.sf.hw=1
-PRODUCT_PROPERTY_OVERRIDES += debug.composition.type=mdp
-PRODUCT_PROPERTY_OVERRIDES += debug.gr.numframebuffers=2
-
-# HardwareRenderer properties
-# dirty_regions: "false" to disable partial invalidates, override if enabletr=true
-PRODUCT_PROPERTY_OVERRIDES += \
-    hwui.render_dirty_regions=false \
-    hwui.disable_vsync=true \
-    hwui.print_config=choice \
-    debug.enabletr=false
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.heapsize=48m \
-    dalvik.vm.dexopt-flags=v=n,o=v,m=y \
-    dalvik.vm.checkjni=false
-    dalvik.vm.checkjni=false \
-    dalvik.vm.heapstartsize=5m \
-    dalvik.vm.heapgrowthlimit=48m \
-    dalvik.vm.heapsize=128m
-
-# Don't set /proc/sys/vm/dirty_ratio to 0 when USB mounting
-PRODUCT_PROPERTY_OVERRIDES += ro.vold.umsdirtyratio=20
-
-# Misc properties
-# events_per_sec: default 90
-PRODUCT_PROPERTY_OVERRIDES += \
-    pm.sleep_mode=true \
-    ro.telephony.call_ring.delay=2 \
-    net.tcp.buffersize.default=4096,87380,256960,4096,16384,256960 \
-    net.tcp.buffersize.wifi=4096,87380,256960,4096,16384,256960 \
-    net.tcp.buffersize.umts=4096,87380,256960,4096,16384,256960 \
-    net.tcp.buffersize.gprs=4096,87380,256960,4096,16384,256960 \
-    net.tcp.buffersize.edge=4096,87380,256960,4096,16384,256960

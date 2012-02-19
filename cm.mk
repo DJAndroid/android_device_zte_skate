@@ -20,4 +20,6 @@ PRODUCT_RELEASE_NAME := Skate
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := skate
 
-PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=maguro BUILD_ID=ITL41D BUILD_FINGERPRINT=google/yakju/maguro:4.0.1/ITL41D/223971:user/release-keys
+PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=passion BUILD_ID=GRK39F \
+BUILD_FINGERPRINT=google/passion/passion:2.3.6/GRK39F/189904:user/release-keys \
+PRIVATE_BUILD_DESC="passion-user 2.3.6 GRK39F 189904 release-keys"
