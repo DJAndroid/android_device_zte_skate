@@ -124,6 +124,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/zte/skate/prebuilt/etc/fw_4319.bin:system/etc/fw_4319.bin \
     device/zte/skate/prebuilt/etc/fw_4319_apsta.bin:system/etc/fw_4319_apsta.bin \
+    device/zte/skate/prebuilt/etc/dhcpcd/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf \
+    device/zte/skate/prebuilt/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
     device/zte/skate/prebuilt/etc/nv_4319.txt:system/etc/nv_4319.txt
 
 PRODUCT_PROPERTY_OVERRIDES += debug.sf.hw=1

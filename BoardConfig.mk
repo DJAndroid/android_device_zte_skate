@@ -47,11 +47,9 @@ BOARD_EGL_CFG := device/zte/skate/prebuilt/lib/egl/egl.cfg
 USE_OPENGL_RENDERER := true
 TARGET_USES_GENLOCK := true
 COMMON_GLOBAL_CFLAGS += -DMISSING_EGL_EXTERNAL_IMAGE -DMISSING_GRALLOC_BUFFERS -DMISSING_EGL_PIXEL_FORMAT_YV12
-COMMON_GLOBAL_CFLAGS += -DREFRESH_RATE=60 -DQCOM_HARDWARE -DSURFACEFLINGER_FORCE_SCREEN_RELEASE
+COMMON_GLOBAL_CFLAGS += -DREFRESH_RATE=60 -DQCOM_HARDWARE
 BOARD_HAS_FLIPPED_SCREEN := true
-BUILD_WITH_FULL_STAGEFRIGHT := true
-TARGET_FORCE_CPU_UPLOAD := true
-# TARGET_SPECIFIC_HEADER_PATH := device/zte/skate/include
+TARGET_SPECIFIC_HEADER_PATH := device/zte/skate/include
 
 # QCOM
 BOARD_USES_QCOM_HARDWARE := true
@@ -78,8 +76,8 @@ BOARD_UMS_LUNFILE := /sys/devices/platform/msm_hsusb/gadget/lun0/file
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"
 
 # Recovery
-BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/zte/common/recovery/recovery_keys.c
-BOARD_CUSTOM_GRAPHICS := ../../../device/zte/common/recovery/graphics.c
+BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/zte/skate/recovery/recovery_keys.c
+BOARD_CUSTOM_GRAPHICS := ../../../device/zte/skate/recovery/graphics.c
 
 # Board related defines
 TARGET_BOOTLOADER_BOARD_NAME := skate
@@ -104,7 +102,6 @@ WIFI_DRIVER_FW_PATH_AP := "/system/etc/fw_4319.bin"
 WIFI_DRIVER_FW_PATH_STA := "/system/etc/fw_4319_apsta.bin"
 WIFI_DRIVER_MODULE_ARG := "firmware_path=/system/etc/fw_4319.bin,nvram_path=/system/etc/nv_4319.txt iface_name=wlan"
 WIFI_DRIVER_MODULE_NAME := "dhd"
-TARGET_SPECIFIC_HEADER_PATH := device/zte/blade/include
 
 # Sensors
 BOARD_VENDOR_USE_AKMD := akm8962
