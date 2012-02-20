@@ -58,6 +58,7 @@ TARGET_USE_HDMI_AS_PRIMARY := false
 TARGET_HARDWARE_3D := true
 HARDWARE_OMX := true
 ALLOW_DEQUEUE_CURRENT_BUFFER := true
+BOARD_USE_NASTY_PTHREAD_CREATE_HACK := true
 
 # QCOM
 BOARD_USES_QCOM_HARDWARE := true
@@ -84,6 +85,7 @@ BOARD_UMS_LUNFILE := /sys/devices/platform/msm_hsusb/gadget/lun0/file
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"
 
 # Recovery
+TARGET_RECOVERY_INITRC := device/zte/skate/recovery/recovery.rc
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/zte/skate/recovery/recovery_keys.c
 BOARD_CUSTOM_GRAPHICS := ../../../device/zte/skate/recovery/graphics.c
 
