@@ -20,7 +20,7 @@ PRODUCT_NAME := zte_skate
 PRODUCT_DEVICE := skate
 PRODUCT_MODEL := ZTE Skate
 
-DEVICE_PACKAGE_OVERLAYS := device/zte/skate/overlay
+DEVICE_PACKAGE_OVERLAYS := device/zte/common/overlay
 
 # We have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
