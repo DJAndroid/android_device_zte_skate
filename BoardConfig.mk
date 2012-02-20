@@ -85,7 +85,7 @@ BOARD_UMS_LUNFILE := /sys/devices/platform/msm_hsusb/gadget/lun0/file
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"
 
 # Recovery
-TARGET_RECOVERY_INITRC := device/zte/skate/recovery/recovery.rc
+# TARGET_RECOVERY_INITRC := device/zte/skate/recovery/recovery.rc
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/zte/skate/recovery/recovery_keys.c
 BOARD_CUSTOM_GRAPHICS := ../../../device/zte/skate/recovery/graphics.c
 
