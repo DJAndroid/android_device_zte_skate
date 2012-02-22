@@ -89,7 +89,8 @@ PRODUCT_COPY_FILES += \
 # Vold
 PRODUCT_COPY_FILES += \
     device/zte/skate/prebuilt/etc/vold.fstab:system/etc/vold.fstab \
-    device/zte/skate/prebuilt/etc/sysctl.conf:system/etc/sysctl.conf
+    device/zte/skate/prebuilt/etc/sysctl.conf:system/etc/sysctl.conf \
+    device/zte/common/prebuilt/etc/init.d/01sysctl:system/etc/init.d/01sysctl
 
 # EGL and gralloc module
 PRODUCT_COPY_FILES += \
