@@ -12,6 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ifeq ($(TARGET_BOOTLOADER_BOARD_NAME),skate)
-include $(call all-named-subdir-makefiles, libsensors SkateParts liblights libopencorehw)
+ifeq ($(TARGET_BOOTLOADER_BOARD_NAME),blade)
+LOCAL_PATH := $(call my-dir)
+include $(CLEAR_VARS)
+subdir_makefiles := \
+        $(LOCAL_PATH)/ZTEParts/Android.mk
+include $(subdir_makefiles)
+include $(call all-makefiles-under,$(LOCAL_PATH))
 endif
