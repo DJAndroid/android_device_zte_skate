@@ -23,11 +23,13 @@ ifeq ($(TARGET_USES_C2D_COMPOSITION),true)
     LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/hw
     LOCAL_SHARED_LIBRARIES := liblog libdl libcutils libmemalloc libutils
     LOCAL_SRC_FILES := copybit_c2d.cpp software_converter.cpp
-    LOCAL_MODULE := copybit.$(TARGET_BOARD_PLATFORM)
+    LOCAL_MODULE := copybit.skate
     LOCAL_C_INCLUDES += hardware/qcom/display/libgralloc
+    LOCAL_CFLAGS += -DTARGET_7x27
+    LOCAL_CFLAGS += -DUSE_ASHMEM
     LOCAL_CFLAGS += -DCOPYBIT_Z180=1 -DC2D_SUPPORT_DISPLAY=1
     LOCAL_MODULE_TAGS := optional
-    include $(BUILD_SHARED_LIBRARY)
+
 ifeq ($(TARGET_USES_ION),true)
     LOCAL_CFLAGS += -DUSE_ION
 endif

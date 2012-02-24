@@ -12,11 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ifeq ($(TARGET_BOOTLOADER_BOARD_NAME),blade)
+ifeq ($(TARGET_BOOTLOADER_BOARD_NAME),skate)
 LOCAL_PATH := $(call my-dir)
-include $(CLEAR_VARS)
 subdir_makefiles := \
-        $(LOCAL_PATH)/ZTEParts/Android.mk
-include $(subdir_makefiles)
-include $(call all-makefiles-under,$(LOCAL_PATH))
+        device/zte/common/ZTEParts/Android.mk
+#include $(subdir_makefiles)
+include $(call all-makefiles-under,device/zte/skate)
 endif
