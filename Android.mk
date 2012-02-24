@@ -13,5 +13,5 @@
 # limitations under the License.
 
 ifeq ($(TARGET_BOOTLOADER_BOARD_NAME),skate)
-include $(call all-named-subdir-makefiles, libsensors SkateParts  liblights libomxcore libopencorehw libstagefrighthw)
+include $(call all-named-subdir-makefiles, libsensors SkateParts liblights libopencorehw)
 endif
