@@ -63,8 +63,8 @@ PRODUCT_COPY_FILES += \
 
 # EGL and gralloc module
 PRODUCT_COPY_FILES += \
-    device/zte/skate/prebuilt/lib/hw/gralloc.skate.so:system/lib/hw/gralloc.skate.so
-#    device/zte/skate/prebuilt/lib/hw/copybit.skate.so:system/lib/hw/copybit.skate.so
+    device/zte/skate/prebuilt/lib/hw/gralloc.skate.so:system/lib/hw/gralloc.skate.so \
+    device/zte/skate/prebuilt/lib/hw/copybit.skate.so:system/lib/hw/copybit.skate.so
 
 # GPS
 PRODUCT_COPY_FILES += \
