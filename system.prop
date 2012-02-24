@@ -5,7 +5,6 @@
 ro.sf.lcd_density=240
 ro.sf.hwrotation=180
 qemu.sf.lcd_density=240
-persist.sys.use_16bpp_alpha=1
 media.stagefright.enable-player=true
 windowsmgr.max_events_per_sec=500
 ro.media.dec.jpeg.memcap=20000000
@@ -16,7 +15,6 @@ debug.sf.hw=1
 debug.composition.type=mdp
 debug.gr.numframebuffers=2
 debug.performance.tuning=1
-video.accelerate.hw=1
 debug.composition.type=hdpi
 hs.systemserver=16m
 hs.app.process=16m

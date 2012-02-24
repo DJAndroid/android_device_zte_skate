@@ -14,57 +14,26 @@
 
 # proprietary side of the device
 $(call inherit-product-if-exists, vendor/zte/skate/skate-vendor.mk)
+$(call inherit-product, device/zte/common/device_zte.mk)
 
 # Discard inherited values and use our own instead.
 PRODUCT_NAME := zte_skate
 PRODUCT_DEVICE := skate
 PRODUCT_MODEL := ZTE Skate
 
-DEVICE_PACKAGE_OVERLAYS := device/zte/common/overlay
-
-# We have enough storage space to hold precise GC data
-PRODUCT_TAGS += dalvik.gc.type-precise
-
-PRODUCT_LOCALES := en_GB
-# Skate uses high-density artwork where available
-PRODUCT_LOCALES += hdpi
-
-# Video Decoding
-PRODUCT_PACKAGES += \
-    libopencorehw \
-    libstagefrighthw \
-    libmm-omxcore \
-    libOmxCore \
-
-# Graphics
-PRODUCT_PACKAGES += \
-    hwcomposer.default
-
 # Apps
 PRODUCT_PACKAGES += \
-    Gallery2 \
     SkateParts
-
-# Audio
-PRODUCT_PACKAGES += \
-    audio.a2dp.default
 
 # Other
 PRODUCT_PACKAGES += \
-    prox_cal \
     lights.skate \
     gps.skate \
     sensors.skate
 
 # Install the features available on this device.
 PRODUCT_COPY_FILES += \
-    frameworks/base/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
     frameworks/base/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
-    frameworks/base/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
-    frameworks/base/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
-    frameworks/base/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
-    frameworks/base/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
-    frameworks/base/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
     frameworks/base/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml
 
 # Init
@@ -88,18 +57,12 @@ PRODUCT_COPY_FILES += \
 
 # Vold
 PRODUCT_COPY_FILES += \
-    device/zte/skate/prebuilt/etc/vold.fstab:system/etc/vold.fstab \
-    device/zte/skate/prebuilt/etc/sysctl.conf:system/etc/sysctl.conf \
-    device/zte/common/prebuilt/etc/init.d/01sysctl:system/etc/init.d/01sysctl
+    device/zte/skate/prebuilt/etc/vold.fstab:system/etc/vold.fstab
 
 # EGL and gralloc module
 PRODUCT_COPY_FILES += \
     device/zte/skate/prebuilt/lib/hw/gralloc.skate.so:system/lib/hw/gralloc.skate.so \
-    device/zte/skate/prebuilt/lib/hw/copybit.skate.so:system/lib/hw/copybit.skate.so \
-    device/zte/skate/prebuilt/lib/egl/libEGL_adreno200.so:system/lib/egl/libEGL_adreno200.so \
-    device/zte/skate/prebuilt/lib/egl/libGLESv1_CM_adreno200.so:system/lib/egl/libGLESv1_CM_adreno200.so \
-    device/zte/skate/prebuilt/lib/egl/libGLESv2_adreno200.so:system/lib/egl/libGLESv2_adreno200.so \
-    device/zte/skate/prebuilt/lib/egl/libq3dtools_adreno200.so:system/lib/egl/libq3dtools_adreno200.so
+    device/zte/skate/prebuilt/lib/hw/copybit.skate.so:system/lib/hw/copybit.skate.so
 
 # GPS
 PRODUCT_COPY_FILES += \
