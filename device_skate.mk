@@ -29,9 +29,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     lights.skate \
     gps.skate \
-    copybit.skate \
-    audio.primary.skate \
-    audio_policy.skate \
     sensors.skate
 
 # Install the features available on this device.
@@ -74,8 +71,8 @@ PRODUCT_COPY_FILES += \
 
 # Audio
 PRODUCT_COPY_FILES += \
-    device/zte/skate/prebuilt/etc/AutoVolumeControl.txt:system/etc/AutoVolumeControl.txt
-#    device/zte/skate/prebuilt/lib/hw/audio.primary.skate.so:system/lib/hw/audio.primary.skate.so
+    device/zte/skate/prebuilt/etc/AutoVolumeControl.txt:system/etc/AutoVolumeControl.txt \
+    device/zte/skate/prebuilt/lib/hw/audio.primary.skate.so:system/lib/hw/audio.primary.skate.so
 
 # Kernel Modules
 PRODUCT_COPY_FILES += \
