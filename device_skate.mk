@@ -30,7 +30,8 @@ PRODUCT_PACKAGES += \
     lights.skate \
     gps.skate \
     copybit.skate \
-    gralloc.arm \
+    audio.primary.skate \
+    audio_policy.skate \
     sensors.skate
 
 # Install the features available on this device.
