@@ -78,8 +78,7 @@ PRODUCT_COPY_FILES += \
 
 # Kernel Modules
 PRODUCT_COPY_FILES += \
-    device/zte/skate/prebuilt/lib/modules/dhd.ko:system/lib/modules/dhd.ko \
-    device/zte/skate/prebuilt/lib/modules/zram.ko:system/lib/modules/zram.ko 
+    device/zte/skate/prebuilt/lib/modules/dhd.ko:system/lib/modules/dhd.ko
 
 # WiFi
 PRODUCT_COPY_FILES += \
