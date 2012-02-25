@@ -50,14 +50,7 @@ PRODUCT_COPY_FILES += \
     device/zte/skate/prebuilt/usr/keylayout/Generic.kl:system/usr/keylayout/Generic.kl \
     device/zte/skate/prebuilt/usr/idc/synaptics-rmi4-ts.idc:system/usr/idc/synaptics-rmi4-ts.idc
 
-# RIL
-PRODUCT_COPY_FILES += \
-    device/zte/skate/prebuilt/lib/libril.so:system/lib/libril.so \
-    device/zte/skate/prebuilt/lib/libril.so:obj/lib/libril.so
 
-# Vold
-PRODUCT_COPY_FILES += \
-    device/zte/skate/prebuilt/etc/vold.fstab:system/etc/vold.fstab
 
 # EGL and gralloc module
 PRODUCT_COPY_FILES += \
@@ -71,7 +64,6 @@ PRODUCT_COPY_FILES += \
 
 # Audio
 PRODUCT_COPY_FILES += \
-    device/zte/skate/prebuilt/etc/AutoVolumeControl.txt:system/etc/AutoVolumeControl.txt \
     device/zte/skate/prebuilt/lib/hw/audio.primary.skate.so:system/lib/hw/audio.primary.skate.so
 
 # Kernel Modules
@@ -82,6 +74,4 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/zte/skate/prebuilt/etc/fw_4319.bin:system/etc/fw_4319.bin \
     device/zte/skate/prebuilt/etc/fw_4319_apsta.bin:system/etc/fw_4319_apsta.bin \
-    device/zte/skate/prebuilt/etc/dhcpcd/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf \
-    device/zte/skate/prebuilt/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
     device/zte/skate/prebuilt/etc/nv_4319.txt:system/etc/nv_4319.txt
