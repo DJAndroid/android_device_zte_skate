@@ -3,10 +3,12 @@ import init.skate.usb.rc
 on early-init
     export EXTERNAL_STORAGE /mnt/sdcard
     mkdir /mnt/sdcard 0000 system system
-    # for backwards compatibility
+# For backwards compatibility
     symlink /mnt/sdcard /sdcard
     chmod 7777 /data/dalvik-cache
     chown system system /data/dalvik-cache
+# MIUI only
+    mkdir /data/system/theme 7777 system system
 
 service dhcp-service /system/bin/netcfg wlan0 dhcp
     class main
