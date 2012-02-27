@@ -47,10 +47,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/zte/skate/prebuilt/usr/keylayout/skate_keypad.kl:system/usr/keylayout/skate_keypad.kl \
     device/zte/skate/prebuilt/usr/keylayout/7k_handset.kl:system/usr/keylayout/7k_handset.kl \
-    device/zte/skate/prebuilt/usr/keylayout/Generic.kl:system/usr/keylayout/Generic.kl \
-    device/zte/skate/prebuilt/usr/idc/synaptics-rmi4-ts.idc:system/usr/idc/synaptics-rmi4-ts.idc
-
-
+    device/zte/skate/prebuilt/usr/keylayout/Generic.kl:system/usr/keylayout/Generic.kl
 
 # EGL and gralloc module
 PRODUCT_COPY_FILES += \
@@ -59,6 +56,7 @@ PRODUCT_COPY_FILES += \
 
 # GPS
 PRODUCT_COPY_FILES += \
+    device/zte/skate/prebuilt/lib/hw/gps.default.so:system/lib/hw/gps.default.so \
     device/zte/skate/prebuilt/lib/libcommondefs.so:system/lib/libcommondefs.so \
     device/zte/skate/prebuilt/lib/libloc_api-rpc-qc.so:system/lib/libloc_api-rpc-qc.so
 
