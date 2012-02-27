@@ -7,8 +7,6 @@ on early-init
     symlink /mnt/sdcard /sdcard
     chmod 7777 /data/dalvik-cache
     chown system system /data/dalvik-cache
-# MIUI only
-    mkdir /data/system/theme 7777 system system
 
 service dhcp-service /system/bin/netcfg wlan0 dhcp
     class main
@@ -33,6 +31,8 @@ on boot
     mkdir /data/misc/dhcp 0770 dhcp dhcp
     chown dhcp dhcp /data/misc/dhcp
     mkdir /data/system 0775 system system
+# MIUI only
+    mkdir /data/system/theme 7777 system system
 
     mkdir /data/local
     chmod 0777 /data/local
