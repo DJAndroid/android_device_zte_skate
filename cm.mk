@@ -25,6 +25,7 @@ PRIVATE_BUILD_DESC="yakju-user 4.0.2 ICL53F 235179 release-keys"
 
 # Goo Manager supprt
 PRODUCT_PROPERTY_OVERRIDES += \
+   ro.goo.board=skate \
    ro.goo.developerid=tilal6991 \
    ro.goo.rom=cm9skate \
    ro.goo.version=$(shell date +%Y%m%d)
