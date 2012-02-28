@@ -13,7 +13,7 @@ $(call inherit-product, device/common/gps/gps_eu_supl.mk)
 $(call inherit-product, device/zte/skate/device_skate.mk)
 
 PRODUCT_NAME := cm_skate
-PRODUCT_RELEASE_NAME := Skate
+PRODUCT_RELEASE_NAME := skate
 
 -include vendor/cm/config/common_versions.mk
 

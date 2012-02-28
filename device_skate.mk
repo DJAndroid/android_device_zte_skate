@@ -21,10 +21,6 @@ PRODUCT_NAME := zte_skate
 PRODUCT_DEVICE := skate
 PRODUCT_MODEL := ZTE Skate
 
-# Apps
-PRODUCT_PACKAGES += \
-    SkateParts
-
 # Other
 PRODUCT_PACKAGES += \
     lights.skate \
