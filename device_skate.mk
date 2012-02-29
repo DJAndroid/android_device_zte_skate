@@ -21,7 +21,7 @@ PRODUCT_NAME := zte_skate
 PRODUCT_DEVICE := skate
 PRODUCT_MODEL := ZTE Skate
 
-# Other
+# Libs
 PRODUCT_PACKAGES += \
     lights.skate \
     sensors.skate
@@ -44,7 +44,7 @@ PRODUCT_COPY_FILES += \
     device/zte/skate/prebuilt/usr/keylayout/7k_handset.kl:system/usr/keylayout/7k_handset.kl \
     device/zte/skate/prebuilt/usr/keylayout/Generic.kl:system/usr/keylayout/Generic.kl
 
-# EGL and gralloc module
+# Gralloc and copybit (from Tom G as I can't get ones that I compiled to work
 PRODUCT_COPY_FILES += \
     device/zte/skate/prebuilt/lib/hw/gralloc.skate.so:system/lib/hw/gralloc.skate.so \
     device/zte/skate/prebuilt/lib/hw/copybit.skate.so:system/lib/hw/copybit.skate.so
