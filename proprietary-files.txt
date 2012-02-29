@@ -1,5 +1,4 @@
 bin/akmd8962
-bin/hci_qcomm_init
 bin/hciattach
 bin/qmuxd
 
@@ -31,7 +30,6 @@ lib/libpbmlib.so
 lib/libdss.so
 lib/libauth.so
 
-lib/libcamera.so
 lib/liboemcamera.so
 lib/libmmjpeg.so
 lib/libmmipl.so

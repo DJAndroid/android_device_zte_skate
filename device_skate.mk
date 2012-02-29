@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# proprietary side of the device
+# Proprietary and common side of the device
 $(call inherit-product-if-exists, vendor/zte/skate/skate-vendor.mk)
 $(call inherit-product, device/zte/common/device_zte.mk)
 
