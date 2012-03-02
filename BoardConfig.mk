@@ -24,10 +24,6 @@ LOCAL_PATH:= $(call my-dir)
 # against the traditional rules of inheritance).
 USE_CAMERA_STUB := false
 
-BOARD_NO_RGBX_8888 := true
-
-BOARD_HAS_FLIPPED_SCREEN := true
-
 TARGET_NO_BOOTLOADER := true
 
 TARGET_BOARD_PLATFORM := msm7k
@@ -57,18 +53,16 @@ WIFI_DRIVER_MODULE_ARG := "firmware_path=/system/etc/fw_4319.bin,nvram_path=/sys
 WIFI_DRIVER_MODULE_NAME := "dhd"
 WPA_SUPPLICANT_VERSION := VER_0_6_X
 
+TARGET_LIBAGL_USE_GRALLOC_COPYBITS := true
+BOARD_NO_RGBX_8888 := true
+BOARD_HAS_FLIPPED_SCREEN := true
+
+JS_ENGINE := v8
 WITH_JIT := true
 ENABLE_JSC_JIT := true
 
-TARGET_LIBAGL_USE_GRALLOC_COPYBITS := true
-
-JS_ENGINE := v8
-
 # OpenGL drivers config file path
 BOARD_EGL_CFG := device/zte/skate/prebuilt/lib/egl/egl.cfg
-
-# No fallback font by default (space savings)
-#NO_FALLBACK_FONT:=true
 
 BOARD_USES_QCOM_HARDWARE := true
 BOARD_USES_QCOM_LIBS := true
@@ -80,7 +74,7 @@ TARGET_PROVIDES_LIBAUDIO := true
 
 BOARD_CUSTOM_USB_CONTROLLER := ../../device/zte/skate/UsbController.cpp
 BOARD_USE_USB_MASS_STORAGE_SWITCH := true
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun0/file
 BOARD_UMS_LUNFILE := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"
 
 # # cat /proc/mtd

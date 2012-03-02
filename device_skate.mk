@@ -48,6 +48,7 @@ PRODUCT_PACKAGES += \
     gralloc.skate \
     lights.skate \
     sensors.skate \
+    SkateParts \
     libOmxVidEnc \
     FM \
     abtfilt \

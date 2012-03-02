@@ -11,7 +11,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 ifeq ($(TARGET_BOOTLOADER_BOARD_NAME),skate)
 
 LOCAL_PATH := $(call my-dir)
@@ -29,14 +28,14 @@ LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/hw
 LOCAL_MODULE_TAGS := optional
 
 LOCAL_CFLAGS := -DLOG_TAG=\"Sensors\"
-LOCAL_SRC_FILES := 						\
-				sensors.c 			\
-				nusensors.cpp 			\
-				InputEventReader.cpp		\
-				SensorBase.cpp			\
-				TaosProximity.cpp		\
-				TaosLight.cpp			\
-				AkmSensor.cpp
+LOCAL_SRC_FILES :=                                              \
+                                sensors.c                       \
+                                nusensors.cpp                   \
+                                InputEventReader.cpp            \
+                                SensorBase.cpp                  \
+                                SkateProximity.cpp              \
+                                SkateLight.cpp                  \
+                                AkmSensor.cpp
 
 LOCAL_SHARED_LIBRARIES := liblog libcutils
 LOCAL_PRELINK_MODULE := false
@@ -45,13 +44,14 @@ include $(BUILD_SHARED_LIBRARY)
 
 include $(CLEAR_VARS)
 
+LOCAL_CFLAGS := -DLOG_TAG=\"ProxCal\"
 LOCAL_SRC_FILES:= proxcal/prox_cal.c
 
 LOCAL_MODULE:= prox_cal
 LOCAL_MODULE_TAGS := optional
+LOCAL_SHARED_LIBRARIES := liblog
 
 include $(BUILD_EXECUTABLE)
 
 endif # !TARGET_SIMULATOR
-
-endif # TARGET_BOOTLOADER_BOARD_NAME
+endif
