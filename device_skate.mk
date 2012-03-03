@@ -49,6 +49,7 @@ PRODUCT_PACKAGES += \
     lights.skate \
     sensors.skate \
     SkateParts \
+    prox_cal \
     libOmxVidEnc \
     FM \
     abtfilt \
