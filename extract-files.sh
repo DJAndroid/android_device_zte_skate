@@ -206,7 +206,6 @@ PRODUCT_COPY_FILES += \\
     vendor/zte/__DEVICE__/proprietary/lib/libOmxMp3Dec.so:/system/lib/libOmxMp3Dec.so \\
     vendor/zte/__DEVICE__/proprietary/lib/libOmxMpeg4Dec.so:/system/lib/libOmxMpeg4Dec.so \\
     vendor/zte/__DEVICE__/proprietary/lib/libOmxVidEnc.so:/system/lib/libOmxVidEnc.so \\
-    vendor/zte/__DEVICE__/proprietary/lib/libOmxAmrRtpDec.so:/system/lib/libOmxAmrRtpDec.so \\
     vendor/zte/__DEVICE__/proprietary/lib/libOmxAacEnc.so:/system/lib/libOmxAacEnc.so \\
     vendor/zte/__DEVICE__/proprietary/lib/libmm-adspsvc.so:/system/lib/libmm-adspsvc.so \\
     vendor/zte/__DEVICE__/proprietary/lib/libomx_aacdec_sharedlibrary.so:system/lib/libomx_aacdec_sharedlibrary.so \\
