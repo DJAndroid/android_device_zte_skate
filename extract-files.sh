@@ -137,7 +137,6 @@ adb pull /system/etc/init.qcom.bt.sh ../../../vendor/zte/$DEVICE/proprietary/etc
 # Binary
 PRODUCT_COPY_FILES += \\
     vendor/zte/__DEVICE__/proprietary/bin/qmuxd:system/bin/qmuxd \\
-    vendor/zte/__DEVICE__/proprietary/bin/akmd2:system/bin/akmd2 \\
     vendor/zte/__DEVICE__/proprietary/bin/akmd8962:system/bin/akmd8962 \\
     vendor/zte/__DEVICE__/proprietary/bin/hci_qcomm_init:system/bin/hci_qcomm_init
 
@@ -159,9 +158,7 @@ PRODUCT_COPY_FILES += \\
 
 # RIL
 PRODUCT_COPY_FILES += \\
-    vendor/zte/__DEVICE__/proprietary/lib/libganril.so:system/lib/libganril.so \\
     vendor/zte/__DEVICE__/proprietary/lib/libSimCardAuth.so:system/lib/libSimCardAuth.so \\
-    vendor/zte/__DEVICE__/proprietary/lib/librilswitch.so:system/lib/librilswitch.so \\
     vendor/zte/__DEVICE__/proprietary/lib/libril-qc-1.so:system/lib/libril-qc-1.so \\
     vendor/zte/__DEVICE__/proprietary/lib/libril-qcril-hook-oem.so:system/lib/libril-qcril-hook-oem.so \\
     vendor/zte/__DEVICE__/proprietary/lib/libdiag.so:system/lib/libdiag.so \\
@@ -225,7 +222,6 @@ PRODUCT_COPY_FILES += \\
     vendor/zte/__DEVICE__/proprietary/lib/hw/gps.default.so:system/lib/hw/gps.default.so \\
     vendor/zte/__DEVICE__/proprietary/lib/libloc_api-rpc-qc.so:system/lib/libloc_api-rpc-qc.so \\
     vendor/zte/__DEVICE__/proprietary/lib/libcommondefs.so:system/lib/libcommondefs.so
-
 
 # Misc
 PRODUCT_COPY_FILES += \\
