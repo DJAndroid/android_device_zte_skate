@@ -13,9 +13,5 @@
 # limitations under the License.
 
 ifeq ($(TARGET_BOOTLOADER_BOARD_NAME),skate)
-LOCAL_PATH := $(call my-dir)
-subdir_makefiles := \
-        device/zte/common/ZTEParts/Android.mk
-#include $(subdir_makefiles)
 include $(call all-makefiles-under,device/zte/skate)
 endif
