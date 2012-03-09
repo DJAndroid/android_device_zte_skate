@@ -8,7 +8,6 @@
 /dev/si4708          0777   root      root
 /dev/msm_preproc_ctl 0660   system    audio
 /dev/genlock         0666   graphics  graphics
-/dev/ttyHS0          0660   root      system
 /dev/kgsl-3d0        0666   graphics  graphics
 /dev/ttyHS0          0660   bluetooth bluetooth
 /dev/pm_monitor      0770   radio     radio

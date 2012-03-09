@@ -58,6 +58,8 @@ on boot
     chmod 0660 /sys/class/rfkill/rfkill1/state
     chmod 0660 /proc/bluetooth/sleep/proto
     chmod 0660 /proc/bcm/sleep/proto
+    chown bluetooth bluetooth /dev/ttyHS0
+    chmod 0660 /dev/ttyHS0
     chown bluetooth bluetooth /sys/devices/platform/msm_serial_hs.0/clock
     chmod 0660 /sys/devices/platform/msm_serial_hs.0/clock
     chown system system /sys/devices/platform/msm_hsusb_periphera/composition
@@ -83,7 +85,29 @@ on boot
     chown system system /sys/class/leds/amber/grpfreq
     chown system system /sys/class/leds/amber/grppwm
 
-service hciattach /system/bin/hciattach -n -s 115200 /dev/ttyHS0 bcm2035
+# SD card polling
+    chown system system /sys/module/g_android/parameters/product_id
+    chown system system /sys/devices/platform/msm_sdcc.1/polling
+    chown system system /sys/devices/platform/msm_sdcc.2/polling
+    chown system system /sys/devices/platform/msm_sdcc.3/polling
+    chown system system /sys/devices/platform/msm_sdcc.4/polling
+    chown system system /sys/devices/platform/android_usb/composition
+    chown system system /sys/devices/platform/android_usb/remote_wakeup
+
+on property:init.svc.bluetoothd=running
+    write /sys/devices/virtual/bluetooth/hci0/idle_timeout 7000
+    start btwlancoex
+
+on property:init.svc.bluetoothd=stopped
+    stop btwlancoex
+
+service hci_qcomm_init /system/bin/log -t qcom-bluetooth -p i "hci_qcomm_init service requested"
+    user bluetooth
+    group bluetooth net_bt_admin
+    disabled
+    oneshot
+
+service hciattach /system/bin/logwrapper /system/bin/hciattach -n -s 115200 /dev/ttyHS0 bcm2035
     class main
     user bluetooth
     group qcom_oncrpc bluetooth net_bt_admin system
@@ -119,3 +143,15 @@ service akmd /system/bin/akmd8962
     class main
     user root
     oneshot
+
+service btld /system/bin/logwrapper /system/bin/btld -lpm 1 -hb 3000000
+    user root
+    group bluetooth net_bt_admin
+    disabled
+    oneshot
+
+on property:service.brcm.bt.soft_onoff=1
+    start btld
+
+on property:service.brcm.bt.soft_onoff=0
+    stop btld
