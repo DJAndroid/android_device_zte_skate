@@ -27,10 +27,8 @@ PRODUCT_PACKAGES += \
     sensors.skate \
     camera.skate \
     copybit.skate \
-    gralloc.skate \
     audio.primary.skate \
     audio_policy.skate
-
 
 # Install the features available on this device.
 PRODUCT_COPY_FILES += \
@@ -50,10 +48,9 @@ PRODUCT_COPY_FILES += \
     device/zte/skate/prebuilt/usr/keylayout/7k_handset.kl:system/usr/keylayout/7k_handset.kl \
     device/zte/skate/prebuilt/usr/keylayout/Generic.kl:system/usr/keylayout/Generic.kl
 
-# Gralloc and copybit (from Tom G as I can't get ones that I compiled to work)
-#PRODUCT_COPY_FILES += \
-#    device/zte/skate/prebuilt/lib/hw/gralloc.skate.so:system/lib/hw/gralloc.skate.so \
-#    device/zte/skate/prebuilt/lib/hw/copybit.skate.so:system/lib/hw/copybit.skate.so
+# Gralloc (from Tom G as I can't get ones that I compiled to work)
+PRODUCT_COPY_FILES += \
+    device/zte/skate/prebuilt/lib/hw/gralloc.skate.so:system/lib/hw/gralloc.skate.so
 
 # Kernel Modules
 PRODUCT_COPY_FILES += \
