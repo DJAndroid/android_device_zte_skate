@@ -17,15 +17,10 @@
 # Bluetooth
 BOARD_HAVE_BLUETOOTH_BCM := true
 
-# Recovery
-BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/zte/skate/recovery/recovery_keys.c
-BOARD_CUSTOM_GRAPHICS := ../../../device/zte/skate/recovery/graphics.c
-
 # Board related defines
 TARGET_BOOTLOADER_BOARD_NAME := skate
 
 # Kernel
-TARGET_PREBUILT_KERNEL := device/zte/skate/prebuilt/kernel
 BOARD_KERNEL_CMDLINE := androidboot.hardware=skate console=null
 
 # Wifi
@@ -51,8 +46,6 @@ WIFI_DRIVER_MODULE_NAME := "dhd"
 # mtd6: 0a280000 00020000 "userdata"
 # mtd7: 00100000 00020000 "oem"
 # mtd8: 00180000 00020000 "persist"
-
-# Image file stuff
 BOARD_BOOTIMAGE_PARTITION_SIZE     := 0x00500000
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x00600000
 BOARD_SYSTEMIMAGE_PARTITION_SIZE   := 0x0dc00000

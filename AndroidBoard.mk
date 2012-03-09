@@ -12,11 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-LOCAL_PATH := device/zte/skate/prebuilt
+LOCAL_PATH := $(call my-dir)
 
 #
 # Kernel
 #
+
+TARGET_PREBUILT_KERNEL := device/zte/skate/prebuilt/kernel
 
 ALL_PREBUILT += $(INSTALLED_KERNEL_TARGET)
 $(INSTALLED_KERNEL_TARGET): $(TARGET_PREBUILT_KERNEL) | $(ACP)
