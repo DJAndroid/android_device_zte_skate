@@ -13,7 +13,7 @@
 # limitations under the License.
 
 # Proprietary and common side of the device
-$(call inherit-product-if-exists, vendor/zte/skate/skate-vendor.mk)
+$(call inherit-product, vendor/zte/skate/skate-vendor.mk)
 $(call inherit-product, device/zte/common/device_zte.mk)
 
 # Discard inherited values and use our own instead.
@@ -27,6 +27,7 @@ PRODUCT_PACKAGES += \
     sensors.skate \
     camera.skate \
     copybit.skate \
+    hwcomposer.skate \
     audio.primary.skate \
     audio_policy.skate
 
@@ -48,16 +49,13 @@ PRODUCT_COPY_FILES += \
     device/zte/skate/prebuilt/usr/keylayout/7k_handset.kl:system/usr/keylayout/7k_handset.kl \
     device/zte/skate/prebuilt/usr/keylayout/Generic.kl:system/usr/keylayout/Generic.kl
 
-# Gralloc (from Tom G as I can't get ones that I compiled to work)
+# Gralloc (from paul-xxx as I can't get ones that I compiled to work)
 PRODUCT_COPY_FILES += \
     device/zte/skate/prebuilt/lib/hw/gralloc.skate.so:system/lib/hw/gralloc.skate.so
 
-# Kernel Modules
-PRODUCT_COPY_FILES += \
-    device/zte/skate/prebuilt/lib/modules/dhd.ko:system/lib/modules/dhd.ko
-
 # WiFi
 PRODUCT_COPY_FILES += \
+    device/zte/skate/prebuilt/lib/modules/dhd.ko:system/lib/modules/dhd.ko \
     device/zte/skate/prebuilt/etc/fw_4319.bin:system/etc/fw_4319.bin \
     device/zte/skate/prebuilt/etc/fw_4319_apsta.bin:system/etc/fw_4319_apsta.bin \
     device/zte/skate/prebuilt/etc/nv_4319.txt:system/etc/nv_4319.txt
