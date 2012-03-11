@@ -27,7 +27,6 @@ PRODUCT_PACKAGES += \
     sensors.skate \
     camera.skate \
     copybit.skate \
-    hwcomposer.skate \
     audio.primary.skate \
     audio_policy.skate
 
