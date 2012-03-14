@@ -27,6 +27,7 @@ PRODUCT_PACKAGES += \
     sensors.skate \
     camera.skate \
     copybit.skate \
+    gralloc.skate \
     audio.primary.skate \
     audio_policy.skate
 
@@ -49,8 +50,8 @@ PRODUCT_COPY_FILES += \
     device/zte/skate/prebuilt/usr/keylayout/Generic.kl:system/usr/keylayout/Generic.kl
 
 # Gralloc (from paul-xxx as I can't get ones that I compiled to work)
-PRODUCT_COPY_FILES += \
-    device/zte/skate/prebuilt/lib/hw/gralloc.skate.so:system/lib/hw/gralloc.skate.so
+#PRODUCT_COPY_FILES += \
+#    device/zte/skate/prebuilt/lib/hw/gralloc.skate.so:system/lib/hw/gralloc.skate.so
 
 # WiFi
 PRODUCT_COPY_FILES += \
