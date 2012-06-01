@@ -77,7 +77,9 @@ PRODUCT_COPY_FILES += \
 
 # Audio
 PRODUCT_COPY_FILES += \
-    device/zte/skate/prebuilt/etc/AutoVolumeControl.txt:system/etc/AutoVolumeControl.txt
+    device/zte/skate/prebuilt/etc/AutoVolumeControl.txt:system/etc/AutoVolumeControl.txt \
+	device/zte/skate/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml \
+	device/zte/skate/prebuilt/etc/AudioFilter.csv:system/etc/AudioFilter.csv
 
 # WLAN + BT + FM
 PRODUCT_COPY_FILES += \
@@ -101,25 +103,13 @@ PRODUCT_COPY_FILES += \
 # Kernel Modules
 PRODUCT_COPY_FILES += \
     device/zte/skate/prebuilt/lib/modules/dhd.ko:system/lib/modules/dhd.ko \
-    device/zte/skate/prebuilt/lib/modules/2.6.35.7-pref+/zram.ko:system/lib/modules/2.6.35.7-pref+/zram.ko 
+    device/zte/skate/prebuilt/lib/modules/scsi_wait_scan.ko:system/lib/modules/scsi_wait_scan.ko 
 
 # WiFi firmware
 PRODUCT_COPY_FILES += \
     device/zte/skate/prebuilt/etc/fw_4319.bin:system/etc/fw_4319.bin \
     device/zte/skate/prebuilt/etc/fw_4319_apsta.bin:system/etc/fw_4319_apsta.bin \
     device/zte/skate/prebuilt/etc/nv_4319.txt:system/etc/nv_4319.txt
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    keyguard.no_require_sim=true \
-    ro.com.android.dateformat=dd-MM-yyyy \
-    ro.ril.hsxpa=1 \
-    ro.ril.gprsclass=10 \
-    ro.media.dec.jpeg.memcap=10000000
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.build.baseband_version=P743B01 \
-    wifi.supplicant_scan_interval=60 \
-    ro.com.android.dataroaming=false
 
 # Skate uses high-density artwork where available
 PRODUCT_LOCALES += hdpi
@@ -129,19 +119,17 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 
 # This should not be needed but on-screen keyboard uses the wrong density without it.
 PRODUCT_PROPERTY_OVERRIDES += \
-    qemu.sf.lcd_density=240 
-
-PRODUCT_PROPERTY_OVERRIDES += \
     keyguard.no_require_sim=true \
     ro.com.android.dateformat=dd-MM-yyyy \
+    ro.build.baseband_version=P743B01 \
+    wifi.supplicant_scan_interval=180 \
+    ro.com.android.dataroaming=false \
+    qemu.sf.lcd_density=240 \
     ro.ril.hsxpa=2 \
     ro.ril.gprsclass=10 \
     ro.telephony.default_network=0 \
-    ro.telephony.call_ring.multiple=false
-
-PRODUCT_PROPERTY_OVERRIDES += \
+    ro.telephony.call_ring.multiple=false \
     ro.com.google.locationfeatures=1 \
     ro.setupwizard.enable_bypass=1 \
     ro.media.dec.jpeg.memcap=20000000 \
     ro.opengles.version=131072
-

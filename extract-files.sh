@@ -50,8 +50,6 @@ adb pull /system/etc/firmware/yamato_pfp.fw ../../../vendor/zte/$DEVICE/propriet
 adb pull /system/etc/firmware/yamato_pm4.fw ../../../vendor/zte/$DEVICE/proprietary/etc/firmware/yamato_pm4.fw
 
 # RIL files
-adb pull /system/lib/librilswitch.so ../../../vendor/zte/$DEVICE/proprietary/lib/librilswitch.so
-adb pull /system/lib/libganril.so ../../../vendor/zte/$DEVICE/proprietary/lib/libganril.so
 adb pull /system/lib/libSimCardAuth.so ../../../vendor/zte/$DEVICE/proprietary/lib/libSimCardAuth.so
 adb pull /system/lib/libril-qc-1.so ../../../vendor/zte/$DEVICE/proprietary/lib/libril-qc-1.so
 adb pull /system/lib/libril-qcril-hook-oem.so ../../../vendor/zte/$DEVICE/proprietary/lib/libril-qcril-hook-oem.so
