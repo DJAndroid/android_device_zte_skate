@@ -39,6 +39,14 @@
 
     <bool name="config_disableMenuKeyInLockScreen">true</bool>
 
+    <!-- enable soft buttons in status bar and turn them off by default -->
+    <bool name="cm_default_has_soft_buttons">true</bool>
+    <bool name="cm_default_show_soft_home">false</bool>
+    <bool name="cm_default_show_soft_menu">false</bool>
+    <bool name="cm_default_show_soft_back">false</bool>
+    <bool name="cm_default_show_soft_search">false</bool>
+    <bool name="cm_default_show_soft_quick_na">false</bool>
+
     <!-- Array of light sensor LUX values to define our levels for auto backlight brightness support.
          The N entries of this array define N + 1 zones as follows:
 
