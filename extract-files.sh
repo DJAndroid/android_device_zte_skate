@@ -28,8 +28,6 @@ mkdir -p ../../../vendor/zte/$DEVICE/proprietary/lib/hw
 
 adb pull /system/bin/qmuxd ../../../vendor/zte/$DEVICE/proprietary/bin/qmuxd
 chmod 755 ../../../vendor/zte/$DEVICE/proprietary/bin/qmuxd
-adb pull /system/bin/akmd2 ../../../vendor/zte/$DEVICE/proprietary/bin/akmd2
-chmod 755 ../../../vendor/zte/$DEVICE/proprietary/bin/akmd2
 adb pull /system/bin/akmd8962 ../../../vendor/zte/$DEVICE/proprietary/bin/akmd8962
 chmod 755 ../../../vendor/zte/$DEVICE/proprietary/bin/akmd8962
 adb pull /system/bin/hci_qcomm_init ../../../vendor/zte/$DEVICE/proprietary/bin/hci_qcomm_init
